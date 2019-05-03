@@ -24,6 +24,11 @@ Interface >> initialize [
 	self selectors: Set new
 ]
 
+{ #category : #printing }
+Interface >> printOn: aStream [
+	self storeOn: aStream
+]
+
 { #category : #accessing }
 Interface >> selectors [
 	^ selectors
@@ -31,5 +36,13 @@ Interface >> selectors [
 
 { #category : #accessing }
 Interface >> selectors: anObject [
-	selectors := anObject
+	selectors := anObject asOrderedCollection
+]
+
+{ #category : #printing }
+Interface >> storeOn: aStream [
+	aStream nextPutAll: self className.
+	aStream nextPut: Character space.
+	aStream nextPutAll: 'selectors: '.
+	self selectors asArray storeOn: aStream.
 ]

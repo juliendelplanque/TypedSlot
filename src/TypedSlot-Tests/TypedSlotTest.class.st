@@ -20,8 +20,8 @@ TypedSlotTest >> testBlockSlot [
 	object usingBlockSlot: 1.
 	self assert: object usingBlockSlot equals: 1.
 	
-	self should: [ object usingBlockSlot: 'test' ] raise: Error.
-	self should: [ object usingBlockSlot: -1 ] raise: Error.
+	self should: [ object usingBlockSlot: 'test' ] raise: TypeViolation.
+	self should: [ object usingBlockSlot: -1 ] raise: TypeViolation.
 	
 	object usingBlockSlot: nil.
 	self assert: object usingBlockSlot equals: nil.
@@ -34,7 +34,7 @@ TypedSlotTest >> testIntegerSlot [
 	object integerSlot: 1.
 	self assert: object integerSlot equals: 1.
 	
-	self should: [ object integerSlot: 'test' ] raise: Error.
+	self should: [ object integerSlot: 'test' ] raise: TypeViolation.
 	
 	object integerSlot: nil.
 	self assert: object integerSlot equals: nil.
@@ -47,7 +47,7 @@ TypedSlotTest >> testStringSlot [
 	object stringSlot: 'test'.
 	self assert: object stringSlot equals: 'test'.
 	
-	self should: [ object stringSlot: 1 ] raise: Error.
+	self should: [ object stringSlot: 1 ] raise: TypeViolation.
 	
 	object stringSlot: nil.
 	self assert: object stringSlot equals: nil.
@@ -62,7 +62,7 @@ TypedSlotTest >> testUsingInterfaceSlot [
 	object usingInterfaceSlot: expected.
 	self assert: object usingInterfaceSlot equals: expected.
 	
-	self should: [ object usingInterfaceSlot: Object new ] raise: Error.
+	self should: [ object usingInterfaceSlot: Object new ] raise: TypeViolation.
 	
 	object usingInterfaceSlot: nil.
 	self assert: object usingInterfaceSlot equals: nil.
@@ -77,7 +77,7 @@ TypedSlotTest >> testUsingTraitSlot [
 	object usingTraitSlot: expected.
 	self assert: object usingTraitSlot equals: expected.
 	
-	self should: [ object usingTraitSlot: Object new ] raise: Error.
+	self should: [ object usingTraitSlot: Object new ] raise: TypeViolation.
 	
 	object usingTraitSlot: nil.
 	self assert: object usingTraitSlot equals: nil.

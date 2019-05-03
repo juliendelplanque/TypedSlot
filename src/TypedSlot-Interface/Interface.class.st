@@ -33,7 +33,7 @@ Interface >> addSelector: aSymbol [
 { #category : #checking }
 Interface >> checkObjectType: anObject [
 	(anObject class selectors includesAll: self selectors)
-		ifFalse: [ self error: 'This kind of object can not be stored by the slot. It needs to implement the required interface.' ]
+		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
 
 { #category : #comparing }

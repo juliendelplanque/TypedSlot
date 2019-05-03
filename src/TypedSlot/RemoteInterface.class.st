@@ -14,9 +14,27 @@ RemoteInterface class >> interfaceSource: anInterfaceSource [
 		yourself
 ]
 
+{ #category : #comparing }
+RemoteInterface >> = anObject [
+	"Answer whether the receiver and anObject represent the same object."
+
+	self == anObject
+		ifTrue: [ ^ true ].
+	self class = anObject class
+		ifFalse: [ ^ false ].
+	^ interfaceSource = anObject interfaceSource
+]
+
 { #category : #checking }
 RemoteInterface >> checkObjectType: anObject [
 	self interface checkObjectType: anObject
+]
+
+{ #category : #comparing }
+RemoteInterface >> hash [
+	"Answer an integer value that is related to the identity of the receiver."
+
+	^ interfaceSource hash
 ]
 
 { #category : #accessing }

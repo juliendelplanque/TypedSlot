@@ -10,22 +10,22 @@ Class {
 { #category : #helpers }
 TypedSlotTest >> disableTypeCheckingDuring: aBlock [
 	| previousState |
-	previousState := TypedSlot isEnabled.
-	TypedSlot isEnabled: false.
-	aBlock ensure: [ TypedSlot isEnabled: previousState ]
+	previousState := TSObjectUsingTypedSlots isTypeCheckingEnabled.
+	TSObjectUsingTypedSlots isTypeCheckingEnabled: false.
+	aBlock ensure: [ TSObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
 ]
 
 { #category : #helpers }
 TypedSlotTest >> enableTypeCheckingDuring: aBlock [
 	| previousState |
-	previousState := TypedSlot isEnabled.
-	TypedSlot isEnabled: true.
-	aBlock ensure: [ TypedSlot isEnabled: previousState ]
+	previousState := TSObjectUsingTypedSlots isTypeCheckingEnabled.
+	TSObjectUsingTypedSlots isTypeCheckingEnabled: true.
+	aBlock ensure: [ TSObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
 ]
 
 { #category : #running }
 TypedSlotTest >> setUp [
-	"Hooks that subclasses may override to define the fixture of test."
+	super setUp.
 	object := TSObjectUsingTypedSlots new.
 ]
 

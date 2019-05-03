@@ -105,7 +105,11 @@ TypedSlot >> initialize [
 
 { #category : #accessing }
 TypedSlot >> isEnabled [
-	^ self class isEnabled
+	"If the global setting is set to disabled, we do not go further."
+	self class isEnabled
+		ifFalse: [ ^ false ].
+	
+	^ self owningClass isTypeCheckingEnabled
 ]
 
 { #category : #accessing }

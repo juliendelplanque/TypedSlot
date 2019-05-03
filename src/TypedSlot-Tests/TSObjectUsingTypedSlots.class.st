@@ -9,8 +9,21 @@ Class {
 		'#usingInterfaceSlot => TypedSlot type: (RemoteInterface interfaceSource: FooableObject)',
 		'#usingBlockSlot => TypedSlot type: [ :object | object isInteger and: [ object > 0 ] ]'
 	],
+	#classInstVars : [
+		'#isTypeCheckingEnabled'
+	],
 	#category : #'TypedSlot-Tests'
 }
+
+{ #category : #accessing }
+TSObjectUsingTypedSlots class >> isTypeCheckingEnabled [
+	^ isTypeCheckingEnabled ifNil: [ isTypeCheckingEnabled := true ]
+]
+
+{ #category : #accessing }
+TSObjectUsingTypedSlots class >> isTypeCheckingEnabled: aBoolean [
+	isTypeCheckingEnabled := aBoolean
+]
 
 { #category : #accessing }
 TSObjectUsingTypedSlots >> integerSlot [

@@ -1,5 +1,5 @@
 Class {
-	#name : #InterfaceChecker,
+	#name : #RemoteInterface,
 	#superclass : #Object,
 	#instVars : [
 		'interfaceSource'
@@ -8,40 +8,44 @@ Class {
 }
 
 { #category : #'instance creation' }
-InterfaceChecker class >> interfaceSource: anInterfaceSource [
+RemoteInterface class >> interfaceSource: anInterfaceSource [
 	^ self new
 		interfaceSource: anInterfaceSource;
 		yourself
 ]
 
 { #category : #checking }
-InterfaceChecker >> checkObjectType: anObject [
-	(anObject class selectors includesAll: self selectors)
-		ifFalse: [ self error: 'This kind of object can not be stored by the slot. It needs to implement the required interface.' ]
+RemoteInterface >> checkObjectType: anObject [
+	self interface checkObjectType: anObject
 ]
 
 { #category : #accessing }
-InterfaceChecker >> interface [
+RemoteInterface >> interface [
 	^ self interfaceSource interface
 ]
 
 { #category : #accessing }
-InterfaceChecker >> interfaceSource [
+RemoteInterface >> interfaceSource [
 	^ interfaceSource
 ]
 
 { #category : #accessing }
-InterfaceChecker >> interfaceSource: anObject [
+RemoteInterface >> interfaceSource: anObject [
 	interfaceSource := anObject
 ]
 
+{ #category : #printing }
+RemoteInterface >> printOn: aStream [
+	self storeOn: aStream
+]
+
 { #category : #accessing }
-InterfaceChecker >> selectors [
+RemoteInterface >> selectors [
 	^ self interface selectors
 ]
 
 { #category : #printing }
-InterfaceChecker >> storeOn: aStream [
+RemoteInterface >> storeOn: aStream [
 	aStream nextPut: $(.
 	aStream nextPutAll: self className.
 	aStream nextPut: Character space.

@@ -68,7 +68,7 @@ TypedSlot >> printOn: aStream [
 		nextPutAll: self class name.
 	aStream
 		nextPutAll: ' type: '.
-	self type storeOn: aStream.
+	self type printOn: aStream.
 
 ]
 

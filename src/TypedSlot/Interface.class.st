@@ -12,6 +12,12 @@ Interface >> addSelector: aSymbol [
 	selectors add: aSymbol
 ]
 
+{ #category : #checking }
+Interface >> checkObjectType: anObject [
+	(anObject class selectors includesAll: self selectors)
+		ifFalse: [ self error: 'This kind of object can not be stored by the slot. It needs to implement the required interface.' ]
+]
+
 { #category : #initialization }
 Interface >> initialize [
 	super initialize.

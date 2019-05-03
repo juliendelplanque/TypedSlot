@@ -6,7 +6,8 @@ Class {
 		'#integerSlot => TypedSlot type: Integer',
 		'#normalSlot',
 		'#usingTraitSlot => TypedSlot type: TSTraitForTests',
-		'#usingInterfaceSlot => TypedSlot type: (InterfaceChecker interfaceSource: FooableObject)'
+		'#usingInterfaceSlot => TypedSlot type: (RemoteInterface interfaceSource: FooableObject)',
+		'#usingBlockSlot => TypedSlot type: [ :object | object isInteger and: [ object > 0 ] ]'
 	],
 	#category : #'TypedSlot-Tests'
 }
@@ -39,6 +40,16 @@ TSObjectUsingTypedSlots >> stringSlot [
 { #category : #accessing }
 TSObjectUsingTypedSlots >> stringSlot: anObject [
 	stringSlot := anObject
+]
+
+{ #category : #accessing }
+TSObjectUsingTypedSlots >> usingBlockSlot [
+	^ usingBlockSlot
+]
+
+{ #category : #accessing }
+TSObjectUsingTypedSlots >> usingBlockSlot: anObject [
+	usingBlockSlot := anObject
 ]
 
 { #category : #accessing }

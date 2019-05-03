@@ -14,6 +14,20 @@ TypedSlotTest >> setUp [
 ]
 
 { #category : #tests }
+TypedSlotTest >> testBlockSlot [
+	self assert: object usingBlockSlot equals: nil.
+	
+	object usingBlockSlot: 1.
+	self assert: object usingBlockSlot equals: 1.
+	
+	self should: [ object usingBlockSlot: 'test' ] raise: Error.
+	self should: [ object usingBlockSlot: -1 ] raise: Error.
+	
+	object usingBlockSlot: nil.
+	self assert: object usingBlockSlot equals: nil.
+]
+
+{ #category : #tests }
 TypedSlotTest >> testIntegerSlot [
 	self assert: object integerSlot equals: nil.
 	

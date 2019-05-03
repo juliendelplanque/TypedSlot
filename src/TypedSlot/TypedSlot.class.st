@@ -4,13 +4,37 @@ Class {
 	#instVars : [
 		'type'
 	],
+	#classInstVars : [
+		'isEnabled'
+	],
 	#category : #'TypedSlot-Core'
 }
+
+{ #category : #accessing }
+TypedSlot class >> isEnabled [
+	^ isEnabled ifNil: [ isEnabled := true ]
+]
+
+{ #category : #accessing }
+TypedSlot class >> isEnabled: anObject [
+	isEnabled := anObject
+]
 
 { #category : #'instance creation' }
 TypedSlot class >> named: aSymbol type: aTypeableObject [
 
 	^(super named: aSymbol) type: aTypeableObject
+]
+
+{ #category : #settings }
+TypedSlot class >> settingsOn: aBuilder [ 
+	<systemsettings>
+	(aBuilder setting: #'Type checking at runtime') 
+		target: self;
+		description: 'Enables type checking at runtime using TypedSlot.';
+		selector: #isEnabled;
+		iconName: #smallConfigurationIcon;
+		parent: #tools
 ]
 
 { #category : #comparing }
@@ -21,6 +45,8 @@ TypedSlot >> = anObject [
 
 { #category : #'meta-object-protocol' }
 TypedSlot >> checkTypeOfValue: newValue [
+	self isEnabled
+		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
 	
 	type checkObjectType: newValue
@@ -75,6 +101,11 @@ TypedSlot >> hash [
 TypedSlot >> initialize [
 	super initialize.
 	self type: Object
+]
+
+{ #category : #accessing }
+TypedSlot >> isEnabled [
+	^ self class isEnabled
 ]
 
 { #category : #accessing }

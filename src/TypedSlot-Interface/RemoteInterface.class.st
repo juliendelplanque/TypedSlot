@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'interfaceSource'
 	],
-	#category : #'TypedSlot-Core'
+	#category : #'TypedSlot-Interface'
 }
 
 { #category : #'instance creation' }

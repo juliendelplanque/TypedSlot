@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'selectors'
 	],
-	#category : #'TypedSlot-Core'
+	#category : #'TypedSlot-Interface'
 }
 
 { #category : #accessing }

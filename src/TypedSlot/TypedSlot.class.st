@@ -26,6 +26,23 @@ TypedSlot >> checkTypeOfValue: newValue [
 	type checkObjectType: newValue
 ]
 
+{ #category : #printing }
+TypedSlot >> definitionString [
+	^ String streamContents: [ :stream |
+		self definitionStringOn: stream ]
+]
+
+{ #category : #printing }
+TypedSlot >> definitionStringOn: aStream [
+	aStream 
+		store: self name;
+		nextPutAll: ' => ';
+		nextPutAll: self class name.
+	aStream
+		nextPutAll: ' type: '.
+	self type printOn: aStream
+]
+
 { #category : #'code generation' }
 TypedSlot >> emitStore: aMethodBuilder [
 	| tempName |
@@ -58,18 +75,6 @@ TypedSlot >> hash [
 TypedSlot >> initialize [
 	super initialize.
 	self type: Object
-]
-
-{ #category : #printing }
-TypedSlot >> printOn: aStream [
-	aStream 
-		store: self name;
-		nextPutAll: ' => ';
-		nextPutAll: self class name.
-	aStream
-		nextPutAll: ' type: '.
-	self type printOn: aStream.
-
 ]
 
 { #category : #accessing }

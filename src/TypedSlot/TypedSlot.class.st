@@ -45,7 +45,7 @@ TypedSlot >> = anObject [
 
 { #category : #'meta-object-protocol' }
 TypedSlot >> checkTypeOfValue: newValue [
-	self isEnabled
+	(self isEnabledFor: newValue)
 		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
 	
@@ -104,12 +104,10 @@ TypedSlot >> initialize [
 ]
 
 { #category : #accessing }
-TypedSlot >> isEnabled [
+TypedSlot >> isEnabledFor: anObject [
 	"If the global setting is set to disabled, we do not go further."
-	self class isEnabled
-		ifFalse: [ ^ false ].
-	
-	^ self owningClass isTypeCheckingEnabled
+	^ self class isEnabled
+		and: [ anObject isTypeCheckingEnabled ] "Else, we ask the instance if it wants type-checking."
 ]
 
 { #category : #accessing }

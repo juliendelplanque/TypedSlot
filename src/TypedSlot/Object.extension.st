@@ -4,3 +4,8 @@ Extension { #name : #Object }
 Object class >> isTypeCheckingEnabled [
 	^ false
 ]
+
+{ #category : #'*TypedSlot' }
+Object >> isTypeCheckingEnabled [
+	^ self class isTypeCheckingEnabled
+]

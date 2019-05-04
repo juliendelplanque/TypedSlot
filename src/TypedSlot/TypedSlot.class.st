@@ -44,8 +44,8 @@ TypedSlot >> = anObject [
 ]
 
 { #category : #'meta-object-protocol' }
-TypedSlot >> checkTypeOfValue: newValue [
-	(self isEnabledFor: newValue)
+TypedSlot >> checkTypeOfValue: newValue for: anObject [
+	(self isEnabledFor: anObject)
 		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
 	
@@ -123,7 +123,7 @@ TypedSlot >> type: anObject [
 { #category : #'meta-object-protocol' }
 TypedSlot >> write: newValue to: anObject [
 	newValue isNotNil
-		ifTrue: [ self checkTypeOfValue: newValue ].
+		ifTrue: [ self checkTypeOfValue: newValue for: anObject ].
 	
 	^ super write: newValue to: anObject
 ]

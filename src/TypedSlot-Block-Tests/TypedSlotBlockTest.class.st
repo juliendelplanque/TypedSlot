@@ -20,7 +20,15 @@ TypedSlotBlockTest >> testCheckObjectType [
 		raise: TypeViolation
 		withExceptionDo: [ :typeViolation | 
 			self assert: typeViolation expectedType equals: expectedType.
-			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ]
+			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ].
+		
+	expectedType := [ :x | x base64Decoded first = 0 ].
+	self
+		should: [ expectedType checkObjectType: -1 ]
+		raise: TypeViolation
+		withExceptionDo: [ :typeViolation | 
+			self assert: typeViolation expectedType equals: expectedType.
+			self assert: typeViolation objectAttemptedToBeWritten equals: -1 ]
 ]
 
 { #category : #tests }

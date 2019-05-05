@@ -1,5 +1,5 @@
 "
-I provide tests for #checkObjectType: extension method on ClassDescription.
+I provide tests for #checkObjectType: extension method on ClassDescription and I ensure using a ClassDescription as type in a TypedSlot works.
 "
 Class {
 	#name : #TypedSlotClassDescriptionTest,
@@ -27,4 +27,20 @@ TypedSlotClassDescriptionTest >> testCheckObjectType [
 		withExceptionDo: [ :typeViolation | 
 			self assert: typeViolation expectedType equals: ScaledDecimal.
 			self assert: typeViolation objectAttemptedToBeWritten equals: 1/2 ].
+]
+
+{ #category : #tests }
+TypedSlotClassDescriptionTest >> testWriteTo [
+	| testSlot mockObject |
+	testSlot := MockObjectForTypedSlotUsingClass slotNamed: #testSlot.
+	mockObject := MockObjectForTypedSlotUsingClass new.
+	
+	self shouldnt: [ testSlot write: 1 to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: 1.
+	
+	self shouldnt: [ testSlot write: nil to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
+	
+	self should: [ testSlot write: 'string' to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
 ]

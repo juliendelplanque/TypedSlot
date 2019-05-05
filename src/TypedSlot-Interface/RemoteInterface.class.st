@@ -2,15 +2,27 @@ Class {
 	#name : #RemoteInterface,
 	#superclass : #Object,
 	#instVars : [
-		'interfaceSource'
+		'interfaceSource',
+		'interfaceSelector'
 	],
 	#category : #'TypedSlot-Interface'
 }
 
+{ #category : #accessing }
+RemoteInterface class >> defaultInterfaceSelector [
+	^ #interface
+]
+
 { #category : #'instance creation' }
-RemoteInterface class >> interfaceSource: anInterfaceSource [
+RemoteInterface class >> source: anInterfaceSource [
+	^ self source: anInterfaceSource interfaceSelector: self defaultInterfaceSelector
+]
+
+{ #category : #'instance creation' }
+RemoteInterface class >> source: anInterfaceSource interfaceSelector: aSymbol [
 	^ self new
-		interfaceSource: anInterfaceSource;
+		source: anInterfaceSource;
+		interfaceSelector: aSymbol;
 		yourself
 ]
 
@@ -30,6 +42,11 @@ RemoteInterface >> checkObjectType: anObject [
 	self interface checkObjectType: anObject
 ]
 
+{ #category : #accessing }
+RemoteInterface >> defaultInterfaceSelector [
+	^ self class defaultInterfaceSelector
+]
+
 { #category : #comparing }
 RemoteInterface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -43,13 +60,18 @@ RemoteInterface >> interface [
 ]
 
 { #category : #accessing }
-RemoteInterface >> interfaceSource [
-	^ interfaceSource
+RemoteInterface >> interfaceSelector [
+	^ interfaceSelector
 ]
 
 { #category : #accessing }
-RemoteInterface >> interfaceSource: anObject [
-	interfaceSource := anObject
+RemoteInterface >> interfaceSelector: anObject [
+	interfaceSelector := anObject
+]
+
+{ #category : #accessing }
+RemoteInterface >> interfaceSource [
+	^ interfaceSource
 ]
 
 { #category : #printing }
@@ -62,12 +84,21 @@ RemoteInterface >> selectors [
 	^ self interface selectors
 ]
 
+{ #category : #accessing }
+RemoteInterface >> source: anObject [
+	interfaceSource := anObject
+]
+
 { #category : #printing }
 RemoteInterface >> storeOn: aStream [
 	aStream nextPut: $(.
 	aStream nextPutAll: self className.
 	aStream nextPut: Character space.
-	aStream nextPutAll: 'interfaceSource: '.
+	aStream nextPutAll: 'source: '.
 	self interfaceSource storeOn: aStream.
+	self interfaceSelector = self defaultInterfaceSelector
+		ifFalse: [ 
+			aStream nextPutAll: ' interfaceSelector: '.
+			self interfaceSelector storeOn: aStream ].
 	aStream nextPut: $)
 ]

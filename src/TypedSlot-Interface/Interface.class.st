@@ -70,6 +70,6 @@ Interface >> storeOn: aStream [
 	aStream nextPutAll: self className.
 	aStream nextPut: Character space.
 	aStream nextPutAll: 'selectors: '.
-	self selectors storeOn: aStream.
+	self selectors asArray storeOn: aStream.
 	aStream nextPut: $)
 ]

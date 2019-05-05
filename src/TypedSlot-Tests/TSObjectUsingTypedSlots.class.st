@@ -5,7 +5,7 @@ Class {
 		'#stringSlot => TypedSlot type: String',
 		'#integerSlot => TypedSlot type: Integer',
 		'#normalSlot',
-		'#usingTraitSlot => TypedSlot type: TSTraitForTests',
+		'#usingTraitSlot => TypedSlot type: MockTraitForTests',
 		'#usingInterfaceSlot => TypedSlot type: (RemoteInterface interfaceSource: FooableObject)',
 		'#usingBlockSlot => TypedSlot type: [ :object | object isInteger and: [ object > 0 ] ]'
 	],

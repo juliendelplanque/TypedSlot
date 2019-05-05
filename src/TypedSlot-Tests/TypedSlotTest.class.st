@@ -156,7 +156,7 @@ TypedSlotTest >> testUsingTraitSlot [
 		| expected |
 		self assert: object usingTraitSlot equals: nil.
 	
-		expected := TSObjectForTest new.
+		expected := MockObjectForTypedSlotUsingTrait new.
 		object usingTraitSlot: expected.
 		self assert: object usingTraitSlot equals: expected.
 	
@@ -172,7 +172,7 @@ TypedSlotTest >> testUsingTraitSlotDisabled [
 		| expected |
 		self assert: object usingTraitSlot equals: nil.
 	
-		expected := TSObjectForTest new.
+		expected := MockObjectForTypedSlotUsingTrait new.
 		object usingTraitSlot: expected.
 		self assert: object usingTraitSlot equals: expected.
 	

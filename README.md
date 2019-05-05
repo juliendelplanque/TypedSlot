@@ -1,2 +1,81 @@
-# TypedSlot
-An experimental implementation of slot with type-checking.
+# TypedSlot [![Build Status](https://travis-ci.org/juliendelplanque/TypedSlot.svg?branch=master)](https://travis-ci.org/juliendelplanque/TypedSlot)
+An implementation of slot with type-checking.
+
+## Install
+In a playground, execute the following script:
+
+```st
+Metacello new
+	repository: 'github://juliendelplanque/TypedSlot/src';
+	baseline: 'TypedSlot';
+	load
+```
+
+## TypedSlot
+This project provides 4 kinds of "type" to provide to TypedSlot:
+
+- Class: The slot will only accept objects that are kind of a given class.
+- Trait: The slot will only accept objects for which the class is using a given trait.
+- Block: The slot will only accept objects for satisfying a given block (i.e. the block returns true).
+- Interface: The slot will only accept object for which the class implement a given interface.
+
+### Class
+One can define an object with a slot that can only accept integers.
+
+```st
+Object subclass: #ExampleTypedSlotUsingClass
+	slots: { #integerSlot => TypedSlot type: Integer }
+	classVariables: {  }
+	package: 'TypedSlot-Example'
+```
+
+Once this class is defined and the accessor and mutator for `#integerSlot` are defined, one can expect the following behaviour.
+
+```st
+object := ExampleTypedSlotUsingClass new.
+
+object integerSlot. "nil"
+object integerSlot: 1.
+object integerSlot. "1"
+
+object integerSlot: 'str'. "Raises a TypeViolation exception."
+```
+
+### Trait
+One can define an object with a slot that can only accept objects for which the class uses a given trait.
+
+```st
+Object subclass: #ExampleTypedSlotUsingTrait
+	slots: { #assertableSlot => TypedSlot type: TAssertable }
+	classVariables: {  }
+	package: 'TypedSlot-Example'
+```
+
+Once this class is defined and the accessor and mutator for `#assertableSlot` are defined, one will only be able to set assertable objects in the `#assertableSlot`.
+
+### Block
+
+One can define an object with a slot that can only accept integers.
+
+```st
+Object subclass: #ExampleTypedSlotUsingBlock
+	slots: { #greaterThanZeroSlot => TypedSlot type: [ :x | x > 0 ] }
+	classVariables: {  }
+	package: 'TypedSlot-Example'
+```
+
+Once this class is defined and the accessor and mutator for `#greaterThanZeroSlot` are defined, one can expect the following behaviour.
+
+```st
+object := ExampleTypedSlotUsingBlock new.
+
+object greaterThanZeroSlot. "nil"
+object greaterThanZeroSlot: 1.
+object integerSlot. "1"
+
+object greaterThanZeroSlot: -1. "Raises a TypeViolation exception."
+object greaterThanZeroSlot: 'test'. "Raises a TypeViolation exception because it does not understand some message."
+```
+
+### Interface
+To be documented once this feature is stable. In the meantime, take a look at `TypedSlotInterfaceTest` and `TypedSlotRemoteInterfaceTest`.

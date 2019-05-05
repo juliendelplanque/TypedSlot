@@ -87,7 +87,7 @@ TypedSlot >> emitStore: aMethodBuilder [
 TypedSlot >> hasSameDefinitionAs: otherSlot [
 
 	^ (super hasSameDefinitionAs: otherSlot) 
-		and: [ self type storeString = otherSlot type storeString ]
+		and: [ self definitionString = otherSlot definitionString ]
 ]
 
 { #category : #comparing }

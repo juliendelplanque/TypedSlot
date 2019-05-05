@@ -92,9 +92,7 @@ TypedSlot >> hasSameDefinitionAs: otherSlot [
 
 { #category : #comparing }
 TypedSlot >> hash [
-	^ ((self species hash bitXor: self name hash) 
-			bitXor: (self index ifNil: [ 0 ])) 
-				bitXor: self type hash
+	^ super hash bitXor: self type hash
 ]
 
 { #category : #initialization }

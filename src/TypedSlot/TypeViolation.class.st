@@ -14,7 +14,7 @@ Class {
 	#category : #'TypedSlot-Errors'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 TypeViolation class >> expectedType: aType objectAttemptedToBeWritten: object [
 	^ self new
 		expectedType: aType;

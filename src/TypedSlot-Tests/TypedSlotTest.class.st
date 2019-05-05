@@ -10,53 +10,23 @@ Class {
 { #category : #helpers }
 TypedSlotTest >> disableTypeCheckingDuring: aBlock [
 	| previousState |
-	previousState := TSObjectUsingTypedSlots isTypeCheckingEnabled.
-	TSObjectUsingTypedSlots isTypeCheckingEnabled: false.
-	aBlock ensure: [ TSObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
+	previousState := MockObjectUsingTypedSlots isTypeCheckingEnabled.
+	MockObjectUsingTypedSlots isTypeCheckingEnabled: false.
+	aBlock ensure: [ MockObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
 ]
 
 { #category : #helpers }
 TypedSlotTest >> enableTypeCheckingDuring: aBlock [
 	| previousState |
-	previousState := TSObjectUsingTypedSlots isTypeCheckingEnabled.
-	TSObjectUsingTypedSlots isTypeCheckingEnabled: true.
-	aBlock ensure: [ TSObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
+	previousState := MockObjectUsingTypedSlots isTypeCheckingEnabled.
+	MockObjectUsingTypedSlots isTypeCheckingEnabled: true.
+	aBlock ensure: [ MockObjectUsingTypedSlots isTypeCheckingEnabled: previousState ]
 ]
 
 { #category : #running }
 TypedSlotTest >> setUp [
 	super setUp.
-	object := TSObjectUsingTypedSlots new.
-]
-
-{ #category : #tests }
-TypedSlotTest >> testBlockSlot [
-	self enableTypeCheckingDuring: [
-		self assert: object usingBlockSlot equals: nil.
-	
-		object usingBlockSlot: 1.
-		self assert: object usingBlockSlot equals: 1.
-	
-		self should: [ object usingBlockSlot: 'test' ] raise: TypeViolation.
-		self should: [ object usingBlockSlot: -1 ] raise: TypeViolation.
-	
-		object usingBlockSlot: nil.
-		self assert: object usingBlockSlot equals: nil ]
-]
-
-{ #category : #tests }
-TypedSlotTest >> testBlockSlotDisabled [
-	self disableTypeCheckingDuring: [ 
-		self assert: object usingBlockSlot equals: nil.
-	
-		object usingBlockSlot: 1.
-		self assert: object usingBlockSlot equals: 1.
-	
-		self shouldnt: [ object usingBlockSlot: 'test' ] raise: TypeViolation.
-		self shouldnt: [ object usingBlockSlot: -1 ] raise: TypeViolation.
-	
-		object usingBlockSlot: nil.
-		self assert: object usingBlockSlot equals: nil ]
+	object := MockObjectUsingTypedSlots new.
 ]
 
 { #category : #tests }
@@ -74,7 +44,7 @@ TypedSlotTest >> testIntegerSlot [
 ]
 
 { #category : #tests }
-TypedSlotTest >> testIntegerSlotDisabled [
+TypedSlotTest >> testIntegerSlotClassDisabled [
 	self disableTypeCheckingDuring: [ 
 		self assert: object integerSlot equals: nil.
 	
@@ -89,97 +59,32 @@ TypedSlotTest >> testIntegerSlotDisabled [
 ]
 
 { #category : #tests }
-TypedSlotTest >> testStringSlot [
-	self enableTypeCheckingDuring: [
-		self assert: object stringSlot equals: nil.
+TypedSlotTest >> testIntegerSlotInstanceDisabled [
+	object isTypeCheckingEnabled: false.
 	
-		object stringSlot: 'test'.
-		self assert: object stringSlot equals: 'test'.
+	self assert: object integerSlot equals: nil.
 	
-		self should: [ object stringSlot: 1 ] raise: TypeViolation.
+	object integerSlot: 1.
+	self assert: object integerSlot equals: 1.
 	
-		object stringSlot: nil.
-		self assert: object stringSlot equals: nil ]
+	self shouldnt: [ object integerSlot: 'test' ] raise: TypeViolation.
+	self assert: object integerSlot equals: 'test'.
+	
+	object integerSlot: nil.
+	self assert: object integerSlot equals: nil
 ]
 
 { #category : #tests }
-TypedSlotTest >> testStringSlotDisabled [
+TypedSlotTest >> testIntegerSlotInstanceEnabled [
 	self disableTypeCheckingDuring: [ 
-		self assert: object stringSlot equals: nil.
+		object isTypeCheckingEnabled: true.
+		self assert: object integerSlot equals: nil.
 	
-		object stringSlot: 'test'.
-		self assert: object stringSlot equals: 'test'.
+		object integerSlot: 1.
+		self assert: object integerSlot equals: 1.
 	
-		self shouldnt: [ object stringSlot: 1 ] raise: TypeViolation.
-		self assert: object stringSlot equals: 1.
-		
-		object stringSlot: nil.
-		self assert: object stringSlot equals: nil ]
-]
-
-{ #category : #tests }
-TypedSlotTest >> testUsingInterfaceSlot [
-	self enableTypeCheckingDuring: [
-		| expected |
-		self assert: object usingInterfaceSlot equals: nil.
+		self should: [ object integerSlot: 'test' ] raise: TypeViolation.
 	
-		expected := FooableObject new.
-		object usingInterfaceSlot: expected.
-		self assert: object usingInterfaceSlot equals: expected.
-	
-		self should: [ object usingInterfaceSlot: Object new ] raise: TypeViolation.
-	
-		object usingInterfaceSlot: nil.
-		self assert: object usingInterfaceSlot equals: nil ]
-]
-
-{ #category : #tests }
-TypedSlotTest >> testUsingInterfaceSlotDisabled [
-	self disableTypeCheckingDuring: [ 
-		| expected |
-		self assert: object usingInterfaceSlot equals: nil.
-	
-		expected := FooableObject new.
-		object usingInterfaceSlot: expected.
-		self assert: object usingInterfaceSlot equals: expected.
-		expected := Object new.
-		self shouldnt: [ object usingInterfaceSlot: expected ] raise: TypeViolation.
-		self assert: object usingInterfaceSlot equals: expected.
-	
-		object usingInterfaceSlot: nil.
-		self assert: object usingInterfaceSlot equals: nil ]
-]
-
-{ #category : #tests }
-TypedSlotTest >> testUsingTraitSlot [
-	self enableTypeCheckingDuring: [
-		| expected |
-		self assert: object usingTraitSlot equals: nil.
-	
-		expected := MockObjectForTypedSlotUsingTrait new.
-		object usingTraitSlot: expected.
-		self assert: object usingTraitSlot equals: expected.
-	
-		self should: [ object usingTraitSlot: Object new ] raise: TypeViolation.
-	
-		object usingTraitSlot: nil.
-		self assert: object usingTraitSlot equals: nil ]
-]
-
-{ #category : #tests }
-TypedSlotTest >> testUsingTraitSlotDisabled [
-	self disableTypeCheckingDuring: [ 
-		| expected |
-		self assert: object usingTraitSlot equals: nil.
-	
-		expected := MockObjectForTypedSlotUsingTrait new.
-		object usingTraitSlot: expected.
-		self assert: object usingTraitSlot equals: expected.
-	
-		expected := Object new.
-		self shouldnt: [ object usingTraitSlot: expected ] raise: TypeViolation.
-		self assert: object usingTraitSlot equals: expected.
-		
-		object usingTraitSlot: nil.
-		self assert: object usingTraitSlot equals: nil ]
+		object integerSlot: nil.
+		self assert: object integerSlot equals: nil ]
 ]

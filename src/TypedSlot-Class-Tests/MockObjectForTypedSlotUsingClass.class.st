@@ -1,3 +1,6 @@
+"
+Mock object for testing purpose.
+"
 Class {
 	#name : #MockObjectForTypedSlotUsingClass,
 	#superclass : #Object,

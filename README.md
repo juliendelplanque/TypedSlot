@@ -19,6 +19,13 @@ This project provides 4 kinds of "type" to provide to TypedSlot:
 - Block: The slot will only accept objects for satisfying a given block (i.e. the block returns true).
 - Interface: The slot will only accept object for which the class implement a given interface.
 
+### Enabling/Disabling type-checking
+It is possible to enable/disable type checking on multiple level:
+
+- Globally, a setting is available in the "Tools" section of the settings.
+- At class-level by overriding class-side method `#isTypeCheckingEnabled` to let it return `true` (returns `false` by default).
+- At instance-level by overriding instance-side method `#isTypeCheckingEnabled` to define a custom policy at instance level (using an instance variable for example).
+
 ### Class
 One can define an object with a slot that can only accept integers.
 

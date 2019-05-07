@@ -1,8 +1,16 @@
+"
+An interface:
+- declares only method selectors
+- cannot be instantiated.
+- can be used to type a TypedSlot
+- can extend several other interfaces.
+"
 Class {
 	#name : #Interface,
 	#superclass : #Object,
 	#instVars : [
-		'selectors'
+		'selectors',
+		'extendedInterfaces'
 	],
 	#category : #'TypedSlot-Interface'
 }
@@ -36,6 +44,21 @@ Interface >> checkObjectType: anObject [
 		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
 
+{ #category : #accessing }
+Interface >> extendedInterfaces [
+	^ extendedInterfaces
+]
+
+{ #category : #accessing }
+Interface >> extendedInterfaces: aCollectionOfInterfaces [
+	| allSelectors |
+	allSelectors := selectors , (aCollectionOfInterfaces flatCollect: #selectors).
+	allSelectors size = allSelectors asSet size
+		ifFalse: [ InterfacesConflict signal ].
+	
+	extendedInterfaces := aCollectionOfInterfaces
+]
+
 { #category : #comparing }
 Interface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -46,7 +69,8 @@ Interface >> hash [
 { #category : #initialization }
 Interface >> initialize [
 	super initialize.
-	self selectors: Set new
+	self selectors: Set new.
+	self extendedInterfaces: #()
 ]
 
 { #category : #printing }
@@ -56,7 +80,7 @@ Interface >> printOn: aStream [
 
 { #category : #accessing }
 Interface >> selectors [
-	^ selectors
+	^ selectors , (self extendedInterfaces flatCollect: #selectors)
 ]
 
 { #category : #accessing }

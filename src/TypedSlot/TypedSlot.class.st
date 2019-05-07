@@ -1,6 +1,6 @@
 Class {
 	#name : #TypedSlot,
-	#superclass : #InstanceVariableSlot,
+	#superclass : #IndexedSlot,
 	#instVars : [
 		'type'
 	],
@@ -70,17 +70,10 @@ TypedSlot >> definitionStringOn: aStream [
 ]
 
 { #category : #'code generation' }
-TypedSlot >> emitStore: aMethodBuilder [
-	| tempName |
-	tempName := Object new.
-	aMethodBuilder
-		addTemp: tempName;
-		storeTemp: tempName;
-		popTop;
-		pushReceiver;
-		pushLiteralVariable: #slot -> self;
-		pushTemp: tempName;
-		send: #writeSlot:value:
+TypedSlot >> emitValue: methodBuilder [
+
+	methodBuilder pushInstVar: index.
+
 ]
 
 { #category : #comparing }

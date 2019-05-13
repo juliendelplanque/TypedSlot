@@ -66,7 +66,7 @@ CollectionOfType >> printOn: aStream [
 { #category : #printing }
 CollectionOfType >> storeOn: aStream [
 	aStream nextPut: $(.
-	aStream nextPutAll: self className.
+	aStream nextPutAll: self collectionType name.
 	aStream nextPutAll: ' withItemsType: '.
 	self itemsType storeOn: aStream.
 	aStream nextPut: $)

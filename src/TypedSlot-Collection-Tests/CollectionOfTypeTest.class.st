@@ -29,3 +29,50 @@ CollectionOfTypeTest >> testCheckObjectType [
 			self assert: typeViolation expectedType equals: (OrderedCollection withItemsType: (Array withItemsType: String)).
 			self assert: typeViolation objectAttemptedToBeWritten equals: (OrderedCollection withAll: #(#('a' 'abc') #(1 2 3))) ].
 ]
+
+{ #category : #tests }
+CollectionOfTypeTest >> testRead [
+	| testSlot mockObject |
+	testSlot := MockObjectForTypedSlotUsingCollectionType slotNamed: #orderedCollectionSlot.
+	mockObject := MockObjectForTypedSlotUsingCollectionType new.
+	
+	testSlot write: (OrderedCollection withAll: #(1 2 3)) to: mockObject.
+	
+	self shouldnt: [ (testSlot read: mockObject) add: 4 ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: (OrderedCollection withAll: #(1 2 3 4)).
+	
+	self should: [ (testSlot read: mockObject) add: $a ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: (OrderedCollection withAll: #(1 2 3 4)).
+]
+
+{ #category : #tests }
+CollectionOfTypeTest >> testWriteTo [
+	| testSlot mockObject |
+	testSlot := MockObjectForTypedSlotUsingCollectionType slotNamed: #orderedCollectionSlot.
+	mockObject := MockObjectForTypedSlotUsingCollectionType new.
+	
+	self shouldnt: [ testSlot write: (OrderedCollection withAll: #(1 2 3)) to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: (OrderedCollection withAll: #(1 2 3)).
+	
+	self shouldnt: [ testSlot write: nil to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
+	
+	self should: [ testSlot write: 'string' to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
+]
+
+{ #category : #tests }
+CollectionOfTypeTest >> testWriteTo2 [
+	| testSlot mockObject |
+	testSlot := MockObjectForTypedSlotUsingCollectionType slotNamed: #setCollectionSlot.
+	mockObject := MockObjectForTypedSlotUsingCollectionType new.
+	
+	self shouldnt: [ testSlot write: (Set withAll: #('a' 'ab' 'd')) to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: (Set withAll: #('a' 'ab' 'd')).
+	
+	self shouldnt: [ testSlot write: nil to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
+	
+	self should: [ testSlot write: 'string' to: mockObject ] raise: TypeViolation.
+	self assert: (testSlot read: mockObject) equals: nil.
+]

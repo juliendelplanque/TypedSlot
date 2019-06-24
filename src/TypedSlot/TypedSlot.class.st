@@ -113,6 +113,11 @@ TypedSlot >> isEnabledFor: anObject [
 		and: [ anObject isTypeCheckingEnabled ] "Else, we ask the instance if it wants type-checking."
 ]
 
+{ #category : #testing }
+TypedSlot >> isTypedSlot [
+	^ true
+]
+
 { #category : #accessing }
 TypedSlot >> type [
 	^ type

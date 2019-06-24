@@ -43,7 +43,19 @@ TypedSlot >> = anObject [
 	^super = anObject and: [ self type = anObject type ]
 ]
 
-{ #category : #'meta-object-protocol' }
+{ #category : #checking }
+TypedSlot >> checkTypeOfCurrentValueFor: anObject [
+	"Checks the type of current value held by the slot in anObject.
+	 Does the check even if type checking is not enabled.
+	 This method is not called automatically.
+	"
+	| currentValue |
+	currentValue := self read: anObject.
+	currentValue ifNil: [ ^ self ].
+	self type checkObjectType: currentValue
+]
+
+{ #category : #checking }
 TypedSlot >> checkTypeOfValue: newValue for: anObject [
 	(self isEnabledFor: anObject)
 		ifFalse: [ ^ self ].

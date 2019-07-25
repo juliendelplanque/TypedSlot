@@ -34,7 +34,8 @@ TypeViolation >> expectedType: anObject [
 
 { #category : #accessing }
 TypeViolation >> messageText [
-	^ 'This kind of object can not be stored by the slot.'
+	^ 'This slot expects an object of kind "{1}" while "{2}" has been provided.'
+		format: { self expectedType printString . self objectAttemptedToBeWritten printString }
 ]
 
 { #category : #accessing }

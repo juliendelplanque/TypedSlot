@@ -1,7 +1,7 @@
-Extension { #name : #ClassDescription }
+Extension { #name : #Collection }
 
 { #category : #'*TypedSlot-Collection' }
-ClassDescription >> withItemsType: aType [
+Collection class >> withItemsType: aType [
 	^ CollectionOfType new
 		collectionType: self;
 		itemsType: aType;

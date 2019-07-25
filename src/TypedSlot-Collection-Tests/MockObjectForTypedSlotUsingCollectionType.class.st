@@ -2,8 +2,8 @@ Class {
 	#name : #MockObjectForTypedSlotUsingCollectionType,
 	#superclass : #Object,
 	#instVars : [
-		'#orderedCollectionSlot => ReadWriteTypedSlot type: (OrderedCollection withItemsType: Integer)',
-		'#setCollectionSlot => ReadWriteTypedSlot type: (Set withItemsType: String)'
+		'#orderedCollectionSlot => TypedSlot type: (Array withItemsType: Integer)',
+		'#setCollectionSlot => TypedSlot type: (OrderedCollection withItemsType: String)'
 	],
 	#category : #'TypedSlot-Collection-Tests'
 }

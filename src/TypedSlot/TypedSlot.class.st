@@ -1,3 +1,6 @@
+"
+I am a typed slot, I store the expected type of the slot and provides an API to perform type-checking.
+"
 Class {
 	#name : #TypedSlot,
 	#superclass : #IndexedSlot,

@@ -1,10 +1,15 @@
 # TypedSlot [![Build Status](https://travis-ci.org/juliendelplanque/TypedSlot.svg?branch=master)](https://travis-ci.org/juliendelplanque/TypedSlot)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Pharo version](https://img.shields.io/badge/Pharo-6.1-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
+
 An implementation of slot with type-checking.
 
 ## Install
 In a playground, execute the following script:
 
-```st
+```smalltalk
 Metacello new
 	repository: 'github://juliendelplanque/TypedSlot/src';
 	baseline: 'TypedSlot';
@@ -29,16 +34,16 @@ It is possible to enable/disable type checking on multiple level:
 ### Class
 One can define an object with a slot that can only accept integers.
 
-```st
+```smalltalk
 Object subclass: #ExampleTypedSlotUsingClass
-	slots: { #integerSlot => TypedSlot type: Integer }
+	slots: { #integerSlot type: Integer }
 	classVariables: {  }
 	package: 'TypedSlot-Example'
 ```
 
 Once this class is defined and the accessor and mutator for `#integerSlot` are defined, one can expect the following behaviour.
 
-```st
+```smalltalk
 object := ExampleTypedSlotUsingClass new.
 
 object integerSlot. "nil"
@@ -51,9 +56,9 @@ object integerSlot: 'str'. "Raises a TypeViolation exception."
 ### Trait
 One can define an object with a slot that can only accept objects for which the class uses a given trait.
 
-```st
+```smalltalk
 Object subclass: #ExampleTypedSlotUsingTrait
-	slots: { #assertableSlot => TypedSlot type: TAssertable }
+	slots: { #assertableSlot type: TAssertable }
 	classVariables: {  }
 	package: 'TypedSlot-Example'
 ```
@@ -64,16 +69,16 @@ Once this class is defined and the accessor and mutator for `#assertableSlot` ar
 
 One can define an object with a slot that can only accept integers.
 
-```st
+```smalltalk
 Object subclass: #ExampleTypedSlotUsingBlock
-	slots: { #greaterThanZeroSlot => TypedSlot type: [ :x | x > 0 ] }
+	slots: { #greaterThanZeroSlot type: [ :x | x > 0 ] }
 	classVariables: {  }
 	package: 'TypedSlot-Example'
 ```
 
 Once this class is defined and the accessor and mutator for `#greaterThanZeroSlot` are defined, one can expect the following behaviour.
 
-```st
+```smalltalk
 object := ExampleTypedSlotUsingBlock new.
 
 object greaterThanZeroSlot. "nil"

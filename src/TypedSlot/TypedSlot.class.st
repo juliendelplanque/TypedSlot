@@ -1,3 +1,6 @@
+"
+I am a typed slot, I store the expected type of the slot and provides an API to perform type-checking.
+"
 Class {
 	#name : #TypedSlot,
 	#superclass : #IndexedSlot,
@@ -74,9 +77,6 @@ TypedSlot >> definitionString [
 TypedSlot >> definitionStringOn: aStream [
 	aStream 
 		store: self name;
-		nextPutAll: ' => ';
-		nextPutAll: self class name.
-	aStream
 		nextPutAll: ' type: '.
 	self type printOn: aStream
 ]

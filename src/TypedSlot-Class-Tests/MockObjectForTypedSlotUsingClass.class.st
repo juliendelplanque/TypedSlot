@@ -5,7 +5,7 @@ Class {
 	#name : #MockObjectForTypedSlotUsingClass,
 	#superclass : #Object,
 	#instVars : [
-		'#testSlot => TypedSlot type: Integer'
+		'#testSlot type: Integer'
 	],
 	#category : #'TypedSlot-Class-Tests'
 }

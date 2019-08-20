@@ -2,7 +2,7 @@ Class {
 	#name : #MockObjectUsingTypedSlots,
 	#superclass : #Object,
 	#instVars : [
-		'#integerSlot => TypedSlot type: Integer',
+		'#integerSlot type: Integer',
 		'#isTypeCheckingEnabled'
 	],
 	#classInstVars : [

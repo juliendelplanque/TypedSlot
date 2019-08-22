@@ -77,7 +77,7 @@ TypedSlot >> definitionString [
 TypedSlot >> definitionStringOn: aStream [
 	aStream store: self name.
 	
-	self type hasFullControlOnDefinitionString
+	(self type isNotNil and: [ self type hasFullControlOnDefinitionString ])
 		ifFalse: [ aStream nextPutAll: ' type: ' ].
 	
 	self type printOn: aStream

@@ -5,3 +5,8 @@ ClassDescription >> checkObjectType: anObject [
 	(anObject isKindOf: self)
 		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
+
+{ #category : #'*TypedSlot-Class' }
+ClassDescription >> hasFullControlOnDefinitionString [
+	^ false
+]

@@ -41,6 +41,11 @@ CollectionOfType >> collectionType: anObject [
 	collectionType := anObject
 ]
 
+{ #category : #testing }
+CollectionOfType >> hasFullControlOnDefinitionString [
+	^ false
+]
+
 { #category : #comparing }
 CollectionOfType >> hash [
 	"Answer an integer value that is related to the identity of the receiver."

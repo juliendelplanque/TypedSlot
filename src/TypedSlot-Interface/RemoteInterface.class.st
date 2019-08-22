@@ -47,6 +47,11 @@ RemoteInterface >> defaultInterfaceSelector [
 	^ self class defaultInterfaceSelector
 ]
 
+{ #category : #testing }
+RemoteInterface >> hasFullControlOnDefinitionString [
+	^ false
+]
+
 { #category : #comparing }
 RemoteInterface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."

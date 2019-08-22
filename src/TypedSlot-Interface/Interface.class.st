@@ -95,10 +95,6 @@ Interface >> selectors: anObject [
 
 { #category : #printing }
 Interface >> storeOn: aStream [
-	aStream nextPut: $(.
-	aStream nextPutAll: self className.
-	aStream nextPut: Character space.
-	aStream nextPutAll: 'selectors: '.
-	self selectors asArray storeOn: aStream.
-	aStream nextPut: $)
+	aStream nextPutAll: ' interface: '.
+	self selectors asArray storeOn: aStream
 ]

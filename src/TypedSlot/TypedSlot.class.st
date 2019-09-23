@@ -67,6 +67,13 @@ TypedSlot >> checkTypeOfValue: newValue for: anObject [
 	type checkObjectType: newValue
 ]
 
+{ #category : #refactoring }
+TypedSlot >> createRefactoring: variableRefactoringClass for: declarationClass [
+	^variableRefactoringClass 
+			variable: self name
+			class: declarationClass
+]
+
 { #category : #printing }
 TypedSlot >> definitionString [
 	^ String streamContents: [ :stream |

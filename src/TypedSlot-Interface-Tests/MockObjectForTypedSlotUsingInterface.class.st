@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'#testSlot1 type: (RemoteInterface source: FooableObject)',
-		'#testSlot2 type: (Interface selectors: #(#foo ))'
+		'#testSlot2 interface: #(#foo )'
 	],
 	#category : #'TypedSlot-Interface-Tests'
 }

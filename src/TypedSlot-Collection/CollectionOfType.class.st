@@ -54,6 +54,11 @@ CollectionOfType >> hash [
 ]
 
 { #category : #accessing }
+CollectionOfType >> isCollectionTypedSlot [
+	^ true
+]
+
+{ #category : #accessing }
 CollectionOfType >> itemsType [
 	^ itemsType
 ]

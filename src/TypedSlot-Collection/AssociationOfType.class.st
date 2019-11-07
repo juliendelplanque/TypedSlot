@@ -9,6 +9,18 @@ AssociationOfType >> keyType [
 	^ collectionType
 ]
 
+{ #category : #printing }
+AssociationOfType >> storeOn: aStream [
+	aStream nextPut: $(.
+	aStream nextPutAll: Association name.
+	aStream nextPutAll: ' of: {';
+		print: self keyType;
+		<< $,;
+		print: self valueType.
+	
+	aStream nextPutAll: '})'
+]
+
 { #category : #accessing }
 AssociationOfType >> valueType [ 
 	^ itemsType

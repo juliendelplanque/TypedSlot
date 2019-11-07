@@ -15,7 +15,7 @@ AssociationOfType >> storeOn: aStream [
 	aStream nextPutAll: Association name.
 	aStream nextPutAll: ' of: {';
 		print: self keyType;
-		<< $,;
+		<< $.;
 		print: self valueType.
 	
 	aStream nextPutAll: '})'

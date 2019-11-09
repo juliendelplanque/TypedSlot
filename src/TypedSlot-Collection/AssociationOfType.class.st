@@ -12,10 +12,10 @@ AssociationOfType >> keyType [
 { #category : #printing }
 AssociationOfType >> storeOn: aStream [
 	aStream nextPut: $(.
-	aStream nextPutAll: self class name.
+	aStream nextPutAll: Association name.
 	aStream nextPutAll: ' of: {';
 		print: self keyType;
-		<< $,;
+		<< $.;
 		print: self valueType.
 	
 	aStream nextPutAll: '})'

@@ -14,7 +14,7 @@ ValidatorType class >> initialSelector [
 
 { #category : #testing }
 ValidatorType >> checkObjectType: anObject [
-	[ predicate value: anObject ] on: Error do: [ self typeViolationWith: anObject ]
+	([ predicate value: anObject ] on: Error do: [ false ]) ifFalse: [ self typeViolationWith: anObject ]
 ]
 
 { #category : #printing }

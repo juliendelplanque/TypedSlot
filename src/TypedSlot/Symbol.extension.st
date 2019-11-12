@@ -9,3 +9,8 @@ Symbol >> satisfy: aPredicate [
 Symbol >> type: aType [
 	^ self => TypedSlot type: aType createType
 ]
+
+{ #category : #'*TypedSlot' }
+Symbol >> uses: aTrait [
+	^ self type: aTrait
+]

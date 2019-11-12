@@ -12,6 +12,7 @@ BaselineOfTypedSlot >> baseline: spec [
 		do: [
 			spec
 				package: 'TypedSlot';
+				package: 'TypedSlotHogo';
 				package: 'TypedSlot-Block' with: [ spec requires: #('TypedSlot') ];
 				package: 'TypedSlot-Block-Tests' with: [ spec requires: #('TypedSlot-Block') ];
 				package: 'TypedSlot-Class' with: [ spec requires: #('TypedSlot') ];

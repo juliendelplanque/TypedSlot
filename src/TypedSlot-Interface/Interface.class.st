@@ -16,6 +16,11 @@ Class {
 }
 
 { #category : #accessing }
+Interface class >> initialSelector [
+	^ #interface: 
+]
+
+{ #category : #accessing }
 Interface class >> selectors: aCollectionOfSymbols [
 	^ self new
 		selectors: aCollectionOfSymbols;
@@ -42,6 +47,11 @@ Interface >> addSelector: aSymbol [
 Interface >> checkObjectType: anObject [
 	(anObject class selectors includesAll: self selectors)
 		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
+]
+
+{ #category : #printing }
+Interface >> createType [
+	^ self
 ]
 
 { #category : #accessing }
@@ -95,6 +105,5 @@ Interface >> selectors: anObject [
 
 { #category : #printing }
 Interface >> storeOn: aStream [
-	aStream nextPutAll: ' interface: '.
 	self selectors asArray storeOn: aStream
 ]

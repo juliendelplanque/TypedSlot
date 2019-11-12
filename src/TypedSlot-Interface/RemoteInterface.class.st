@@ -13,6 +13,11 @@ RemoteInterface class >> defaultInterfaceSelector [
 	^ #interface
 ]
 
+{ #category : #accessing }
+RemoteInterface class >> initialSelector [ 
+	^ #interface: 
+]
+
 { #category : #'instance creation' }
 RemoteInterface class >> source: anInterfaceSource [
 	^ self source: anInterfaceSource interfaceSelector: self defaultInterfaceSelector

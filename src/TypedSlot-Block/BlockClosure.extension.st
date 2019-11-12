@@ -7,6 +7,13 @@ BlockClosure >> checkObjectType: anObject [
 ]
 
 { #category : #'*TypedSlot-Block' }
+BlockClosure >> createType [
+	^ ValidatorType new
+		predicate: self;
+		yourself
+]
+
+{ #category : #'*TypedSlot-Block' }
 BlockClosure >> hasFullControlOnDefinitionString [
 	^ false
 ]

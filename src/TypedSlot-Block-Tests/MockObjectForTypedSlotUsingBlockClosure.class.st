@@ -5,7 +5,7 @@ Class {
 	#name : #MockObjectForTypedSlotUsingBlockClosure,
 	#superclass : #Object,
 	#instVars : [
-		'#testSlot type: [ :x | x > 0 ]'
+		'#testSlot satisfy: [ :x | x > 0 ]'
 	],
 	#category : #'TypedSlot-Block-Tests'
 }

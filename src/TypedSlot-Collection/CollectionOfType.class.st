@@ -41,6 +41,11 @@ CollectionOfType >> collectionType: anObject [
 	collectionType := anObject
 ]
 
+{ #category : #printing }
+CollectionOfType >> definitionStringOn: aStream [ 
+	aStream print: collectionType 
+]
+
 { #category : #testing }
 CollectionOfType >> hasFullControlOnDefinitionString [
 	^ false

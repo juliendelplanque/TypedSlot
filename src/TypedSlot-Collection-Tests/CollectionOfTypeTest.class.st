@@ -9,25 +9,28 @@ Class {
 
 { #category : #tests }
 CollectionOfTypeTest >> testCheckObjectType [
-	self shouldnt: [ (OrderedCollection withItemsType: Integer) checkObjectType: (OrderedCollection withAll: #(1 2 3)) ] raise: TypeViolation.
-	self shouldnt: [ (OrderedCollection withItemsType: String) checkObjectType: (OrderedCollection withAll: #('a' 'abc' 'efg')) ] raise: TypeViolation.
-	self shouldnt: [ (Set withItemsType: Integer) checkObjectType: (Set withAll: #(1 2 3)) ] raise: TypeViolation.
-	self shouldnt: [ (Dictionary withItemsType: Float) checkObjectType: { 'x' -> 1.5. 42 -> 42.42} asDictionary ] raise: TypeViolation.
-	self shouldnt: [ (OrderedCollection withItemsType: (Array withItemsType: String)) checkObjectType: (OrderedCollection withAll: #(#('a' 'abc') #('efg'))) ] raise: TypeViolation.
+	self shouldnt: [ (OrderedCollection of: Integer) checkObjectType: (OrderedCollection withAll: #(1 2 3)) ] raise: TypeViolation.
+	self shouldnt: [ (OrderedCollection of: String) checkObjectType: (OrderedCollection withAll: #('a' 'abc' 'efg')) ] raise: TypeViolation.
+	self shouldnt: [ (Set of: Integer) checkObjectType: (Set withAll: #(1 2 3)) ] raise: TypeViolation.
+	self shouldnt: [ (Dictionary of: Float) checkObjectType: { 'x' -> 1.5. 42 -> 42.42} asDictionary ] raise: TypeViolation.
+	self shouldnt: [ (OrderedCollection of: (Array of: String)) checkObjectType: (OrderedCollection withAll: #(#('a' 'abc') #('efg'))) ] raise: TypeViolation.
 	
 	self
-		should: [ (OrderedCollection withItemsType: Integer) checkObjectType: 'string' ]
+		should: [ (OrderedCollection of: Integer) checkObjectType: 'string' ]
 		raise: TypeViolation
 		withExceptionDo: [ :typeViolation | 
-			self assert: typeViolation expectedType equals: (OrderedCollection withItemsType: Integer).
+			self assert: typeViolation expectedType equals: 
+				(CollectionType new 
+					collectionType: (SingleType new type: OrderedCollection); 
+					elementType: (SingleType new type:Integer)).
 			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ].
 		
 	self
-		should: [ (OrderedCollection withItemsType: (Array withItemsType: String)) checkObjectType: (OrderedCollection withAll: #(#('a' 'abc') #(1 2 3))) ]
+		should: [ (OrderedCollection of: (Array of: String)) checkObjectType: (OrderedCollection withAll: #(#('a' 'abc') #(1 2 3))) ]
 		raise: TypeViolation
 		withExceptionDo: [ :typeViolation | 
-			self assert: typeViolation expectedType equals: (OrderedCollection withItemsType: (Array withItemsType: String)).
-			self assert: typeViolation objectAttemptedToBeWritten equals: (OrderedCollection withAll: #(#('a' 'abc') #(1 2 3))) ].
+			self assert: typeViolation expectedType equals: (SingleType new type: String ; yourself).
+			self assert: typeViolation objectAttemptedToBeWritten equals: 1 ].
 ]
 
 { #category : #tests }

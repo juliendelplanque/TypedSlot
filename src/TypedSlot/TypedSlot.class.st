@@ -63,7 +63,7 @@ TypedSlot >> checkTypeOfValue: newValue for: anObject [
 	(self isEnabledFor: anObject)
 		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
-	
+
 	type checkObjectType: newValue
 ]
 
@@ -82,12 +82,14 @@ TypedSlot >> definitionString [
 
 { #category : #printing }
 TypedSlot >> definitionStringOn: aStream [
-	aStream store: self name.
+	aStream print: self name;
+		nextPut: $ ;
+		nextPutAll: 
+		"#type:" 
+		type class initialSelector;
+		nextPut: $ .
 	
-	(self type isNotNil and: [ self type hasFullControlOnDefinitionString ])
-		ifFalse: [ aStream nextPutAll: ' type: ' ].
-	
-	self type printOn: aStream
+	self type definitionStringOn: aStream
 ]
 
 { #category : #'code generation' }

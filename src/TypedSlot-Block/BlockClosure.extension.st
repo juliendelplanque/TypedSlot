@@ -13,8 +13,3 @@ BlockClosure >> createType [
 		predicate: self;
 		yourself
 ]
-
-{ #category : #'*TypedSlot-Block' }
-BlockClosure >> hasFullControlOnDefinitionString [
-	^ false
-]

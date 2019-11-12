@@ -1,6 +1,11 @@
 Extension { #name : #Symbol }
 
 { #category : #'*TypedSlot' }
+Symbol >> interface: anArrayOfSymbols [
+	^ self type: (Interface selectors: anArrayOfSymbols)
+]
+
+{ #category : #'*TypedSlot' }
 Symbol >> satisfy: aPredicate [
 	^ self type: aPredicate
 ]

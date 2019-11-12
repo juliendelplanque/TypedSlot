@@ -69,11 +69,6 @@ Interface >> extendedInterfaces: aCollectionOfInterfaces [
 	extendedInterfaces := aCollectionOfInterfaces
 ]
 
-{ #category : #testing }
-Interface >> hasFullControlOnDefinitionString [
-	^ true
-]
-
 { #category : #comparing }
 Interface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."

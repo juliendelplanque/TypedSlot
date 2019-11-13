@@ -9,23 +9,23 @@ Class {
 
 { #category : #printing }
 AbstractType class >> initialSelector [
-	^ self subclassResponsibility
+	^ #understands:
 ]
 
 { #category : #testing }
 AbstractType >> = anotherType [
-	^ self class = anotherType class and: [ self hasSameTypeAs: anotherType ]
+	^ 	self == anotherType or:[ self class = anotherType class and: [ self hasSameTypeAs: anotherType ]]
+]
+
+{ #category : #creation }
+AbstractType >> asTypeConstraint [
+	"If it's in that hierarchy, it's already a type"
+	^ self
 ]
 
 { #category : #testing }
 AbstractType >> checkObjectType: anObject [
 	self subclassResponsibility
-]
-
-{ #category : #creation }
-AbstractType >> createType [
-	"If it's in that hierarchy, it's already a type"
-	^ self
 ]
 
 { #category : #printing }
@@ -45,6 +45,11 @@ AbstractType >> isCollectionType [
 
 { #category : #testing }
 AbstractType >> isCompositeType [
+	^ false
+]
+
+{ #category : #testing }
+AbstractType >> isInterfaceType [
 	^ false
 ]
 

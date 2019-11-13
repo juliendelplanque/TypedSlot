@@ -1,11 +1,33 @@
 Class {
-	#name : #TypesTests,
+	#name : #TypesDeclarationStructureTests,
 	#superclass : #TestCase,
 	#category : #TypedSlotHogo
 }
 
 { #category : #basic }
-TypesTests >> testAssociationType [
+TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
+	| slot |
+	slot :=#anIV understands: {#+} .
+	self assert: slot type isInterfaceType.
+	self assert: slot type interface name isNil.
+	self assert: slot type interface selectors isArray.
+	self assert: slot type equals: (AnonymousInterfaceType new interface: (Interface selectors: #(#+)) ; yourself).
+	self assert: slot definitionString equals: '#anIV understands: #(#+)'
+]
+
+{ #category : #basic }
+TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnSelector [
+	| slot |
+	slot :=#anIV understands: #+ .
+	self assert: slot type isInterfaceType.
+	self assert: slot type interface name isNil.
+	self assert: slot type interface selectors isArray.
+	self assert: slot type equals: (AnonymousInterfaceType new interface:(Interface selectors: #(#+)) ; yourself).
+	self assert: slot definitionString equals: '#anIV understands: #(#+)'
+]
+
+{ #category : #basic }
+TypesDeclarationStructureTests >> testAssociationType [
 	| slot |
 	slot :=  #anAssociationTypedIV type: (Association keyType: Character valueType: SmallInteger).
 	self assert: slot type isCompositeType.
@@ -23,7 +45,7 @@ TypesTests >> testAssociationType [
 ]
 
 { #category : #basic }
-TypesTests >> testCollectionType [
+TypesDeclarationStructureTests >> testCollectionType [
 	| slot |
 	slot :=  #aCollectionTypedIV type: (Array of: Character).
 	self assert: slot type isCollectionType.
@@ -41,7 +63,7 @@ TypesTests >> testCollectionType [
 ]
 
 { #category : #basic }
-TypesTests >> testMultipleType [
+TypesDeclarationStructureTests >> testMultipleType [
 	| slot |
 	slot := #aMultipleTypeIV type: {SmallInteger. Float}.
 	self assert: slot type isMultipleType.
@@ -57,7 +79,18 @@ TypesTests >> testMultipleType [
 ]
 
 { #category : #basic }
-TypesTests >> testSingleType [
+TypesDeclarationStructureTests >> testNamedInterface [
+	| slot |
+	slot :=#anIV understands: InterfacePlus.
+	self assert: slot type isInterfaceType.
+	self assert: slot type interface selectors class = Set.
+	self assert: slot type interface name equals: #InterfacePlus.
+	self assert: slot type equals: (NamedInterfaceType new interface: InterfacePlus new ; yourself).
+	self assert: slot definitionString equals: '#anIV understands: InterfacePlus'
+]
+
+{ #category : #basic }
+TypesDeclarationStructureTests >> testSingleType [
 	| slot |
 	slot :=#anIV type: String.
 	self assert: slot type isSingleType.

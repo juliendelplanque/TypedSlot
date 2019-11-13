@@ -1,6 +1,11 @@
 Extension { #name : #Array }
 
 { #category : #'*TypedSlotHogo' }
-Array >> createType [
-	^ MultipleType new types: (self collect: [:aType| aType createType ]) ; yourself
+Array >> asInterfaceConstraint [
+	^ AnonymousInterfaceType selectors: self 
+]
+
+{ #category : #'*TypedSlotHogo' }
+Array >> asTypeConstraint [
+	^ MultipleType new types: (self collect: [:aType| aType asTypeConstraint ]) ; yourself
 ]

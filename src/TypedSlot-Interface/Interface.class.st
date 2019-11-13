@@ -1,10 +1,3 @@
-"
-An interface:
-- declares only method selectors
-- cannot be instantiated.
-- can be used to type a TypedSlot
-- can extend several other interfaces.
-"
 Class {
 	#name : #Interface,
 	#superclass : #Object,
@@ -15,9 +8,9 @@ Class {
 	#category : #'TypedSlot-Interface'
 }
 
-{ #category : #accessing }
-Interface class >> initialSelector [
-	^ #interface: 
+{ #category : #converting }
+Interface class >> asInterfaceConstraint [
+	^ NamedInterfaceType new interface: self new ; yourself
 ]
 
 { #category : #accessing }
@@ -36,22 +29,12 @@ Interface >> = anObject [
 	self class = anObject class
 		ifFalse: [ ^ false ].
 	^ selectors = anObject selectors
+		and: [ extendedInterfaces = anObject extendedInterfaces ]
 ]
 
 { #category : #adding }
 Interface >> addSelector: aSymbol [
 	selectors add: aSymbol
-]
-
-{ #category : #checking }
-Interface >> checkObjectType: anObject [
-	(anObject class selectors includesAll: self selectors)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
-]
-
-{ #category : #printing }
-Interface >> createType [
-	^ self
 ]
 
 { #category : #accessing }
@@ -73,7 +56,7 @@ Interface >> extendedInterfaces: aCollectionOfInterfaces [
 Interface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
-	^ selectors hash
+	^ selectors hash bitXor: extendedInterfaces hash
 ]
 
 { #category : #initialization }
@@ -81,6 +64,11 @@ Interface >> initialize [
 	super initialize.
 	self selectors: Set new.
 	self extendedInterfaces: #()
+]
+
+{ #category : #accessing }
+Interface >> name [
+	^ self class = Interface ifTrue: nil ifFalse: [ self class name ]
 ]
 
 { #category : #printing }
@@ -95,7 +83,7 @@ Interface >> selectors [
 
 { #category : #accessing }
 Interface >> selectors: anObject [
-	selectors := anObject asOrderedCollection
+	selectors := anObject
 ]
 
 { #category : #printing }

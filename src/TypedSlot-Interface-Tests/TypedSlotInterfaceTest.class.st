@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 TypedSlotInterfaceTest >> testCheckObjectType [
 	| interface |
-	interface := Interface selectors: #(#foo).
+	interface := AnonymousInterfaceType selectors: #(#foo).
 	self shouldnt: [ interface checkObjectType: FooableObject new ] raise: TypeViolation.
 	
 	self
@@ -21,7 +21,7 @@ TypedSlotInterfaceTest >> testCheckObjectType [
 { #category : #tests }
 TypedSlotInterfaceTest >> testWriteTo [
 	| testSlot mockObject fooableObject |
-	testSlot := MockObjectForTypedSlotUsingInterface slotNamed: #testSlot1.
+	testSlot := MockObjectForTypedSlotUsingInterface slotNamed: #anonymousInterfaceSlot.
 	mockObject := MockObjectForTypedSlotUsingInterface new.
 	
 	fooableObject := FooableObject new.

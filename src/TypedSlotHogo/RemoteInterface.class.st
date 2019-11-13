@@ -5,7 +5,7 @@ Class {
 		'interfaceSource',
 		'interfaceSelector'
 	],
-	#category : #'TypedSlot-Interface'
+	#category : #TypedSlotHogo
 }
 
 { #category : #accessing }

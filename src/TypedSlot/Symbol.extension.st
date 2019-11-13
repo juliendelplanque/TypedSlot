@@ -1,8 +1,8 @@
 Extension { #name : #Symbol }
 
 { #category : #'*TypedSlot' }
-Symbol >> interface: anArrayOfSymbols [
-	^ self type: (Interface selectors: anArrayOfSymbols)
+Symbol >> asInterfaceConstraint [
+	^ { self } asInterfaceConstraint
 ]
 
 { #category : #'*TypedSlot' }
@@ -12,7 +12,12 @@ Symbol >> satisfy: aPredicate [
 
 { #category : #'*TypedSlot' }
 Symbol >> type: aType [
-	^ self => TypedSlot type: aType createType
+	^ self => TypedSlot type: aType asTypeConstraint
+]
+
+{ #category : #'*TypedSlot' }
+Symbol >> understands: anInterface [
+	^ self => TypedSlot type: anInterface asInterfaceConstraint
 ]
 
 { #category : #'*TypedSlot' }

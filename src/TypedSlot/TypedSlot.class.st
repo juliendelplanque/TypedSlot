@@ -117,12 +117,6 @@ TypedSlot >> initialize [
 	self type: Object
 ]
 
-{ #category : #'code generation' }
-TypedSlot >> isCollectionTypedSlot [ 
-	self flag:#no.
-	^ [type isCollectionTypedSlot] on: MessageNotUnderstood do: [ ^ false ]
-]
-
 { #category : #accessing }
 TypedSlot >> isEnabledFor: anObject [
 	"If the global setting is set to disabled, we do not go further."

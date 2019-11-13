@@ -21,7 +21,7 @@ TypedSlotRemoteInterfaceTest >> testCheckObjectType [
 { #category : #tests }
 TypedSlotRemoteInterfaceTest >> testWriteTo [
 	| testSlot mockObject fooableObject |
-	testSlot := MockObjectForTypedSlotUsingInterface slotNamed: #testSlot2.
+	testSlot := MockObjectForTypedSlotUsingInterface slotNamed: #anonymousInterfaceSlot.
 	mockObject := MockObjectForTypedSlotUsingInterface new.
 	
 	fooableObject := FooableObject new.

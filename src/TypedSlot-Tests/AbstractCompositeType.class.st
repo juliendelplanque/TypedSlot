@@ -1,7 +1,7 @@
 Class {
 	#name : #AbstractCompositeType,
 	#superclass : #AbstractType,
-	#category : #TypedSlotHogo
+	#category : #'TypedSlot-Tests'
 }
 
 { #category : #testing }

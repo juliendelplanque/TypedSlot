@@ -9,6 +9,6 @@ Trait >> checkObjectType: anObject [
 { #category : #'*TypedSlot-Trait' }
 Trait >> createType [
 	^ TraitType new
-		type: self;
+		type: self ;
 		yourself.
 ]

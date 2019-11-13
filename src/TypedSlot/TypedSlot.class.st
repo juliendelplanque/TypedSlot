@@ -83,11 +83,11 @@ TypedSlot >> definitionString [
 { #category : #printing }
 TypedSlot >> definitionStringOn: aStream [
 	aStream print: self name;
-		nextPut: $ ;
+		space;
 		nextPutAll: 
 		"#type:" 
 		type class initialSelector;
-		nextPut: $ .
+		space.
 	
 	self type definitionStringOn: aStream
 ]

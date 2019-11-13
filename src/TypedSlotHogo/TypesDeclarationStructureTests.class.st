@@ -98,3 +98,25 @@ TypesDeclarationStructureTests >> testSingleType [
 	self assert: slot type equals: (SingleType new type:String; yourself).
 	self assert: slot definitionString equals: '#anIV type: String'
 ]
+
+{ #category : #basic }
+TypesDeclarationStructureTests >> testTraitType [
+	| slot |
+	self error.
+	slot := #testSlot mustUse: MockTraitForTests.
+	self assert: slot type isSingleType.
+	self assert: slot type type equals: String.
+	self assert: slot type equals: (SingleType new type:String; yourself).
+	self assert: slot definitionString equals: '#anIV type: String'
+]
+
+{ #category : #basic }
+TypesDeclarationStructureTests >> testValidatorType [
+	| slot |
+	self error.
+	slot :=#anIV type: String.
+	self assert: slot type isSingleType.
+	self assert: slot type type equals: String.
+	self assert: slot type equals: (SingleType new type:String; yourself).
+	self assert: slot definitionString equals: '#anIV type: String'
+]

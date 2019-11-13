@@ -9,7 +9,7 @@ Class {
 
 { #category : #printing }
 TraitType class >> initialSelector [
-	^#uses:
+	^#mustUse:
 ]
 
 { #category : #testing }

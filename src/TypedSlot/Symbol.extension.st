@@ -6,6 +6,11 @@ Symbol >> asInterfaceConstraint [
 ]
 
 { #category : #'*TypedSlot' }
+Symbol >> mustUse: aTrait [
+	^ self type: aTrait
+]
+
+{ #category : #'*TypedSlot' }
 Symbol >> satisfy: aPredicate [
 	^ self type: aPredicate
 ]
@@ -18,9 +23,4 @@ Symbol >> type: aType [
 { #category : #'*TypedSlot' }
 Symbol >> understands: anInterface [
 	^ self => TypedSlot type: anInterface asInterfaceConstraint
-]
-
-{ #category : #'*TypedSlot' }
-Symbol >> uses: aTrait [
-	^ self type: aTrait
 ]

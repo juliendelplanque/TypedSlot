@@ -1,3 +1,8 @@
+"
+I represent Single type constraint.
+
+My type variable contains a class.
+"
 Class {
 	#name : #SingleType,
 	#superclass : #AbstractType,

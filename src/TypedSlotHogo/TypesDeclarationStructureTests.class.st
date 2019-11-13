@@ -102,21 +102,20 @@ TypesDeclarationStructureTests >> testSingleType [
 { #category : #basic }
 TypesDeclarationStructureTests >> testTraitType [
 	| slot |
-	self error.
 	slot := #testSlot mustUse: MockTraitForTests.
-	self assert: slot type isSingleType.
-	self assert: slot type type equals: String.
-	self assert: slot type equals: (SingleType new type:String; yourself).
-	self assert: slot definitionString equals: '#anIV type: String'
+	self assert: slot type isTraitType.
+	self assert: slot type trait equals: MockTraitForTests.
+	self assert: slot type equals: (TraitType new trait: MockTraitForTests ; yourself).
+	self assert: slot definitionString equals: '#testSlot mustUse: MockTraitForTests'
 ]
 
 { #category : #basic }
 TypesDeclarationStructureTests >> testValidatorType [
 	| slot |
-	self error.
-	slot :=#anIV type: String.
-	self assert: slot type isSingleType.
-	self assert: slot type type equals: String.
-	self assert: slot type equals: (SingleType new type:String; yourself).
-	self assert: slot definitionString equals: '#anIV type: String'
+	slot :=#testSlot satisfy: [ :x | x > 0 ].
+	self assert: slot type isValidator.
+	self assert: slot type predicate isBlock.
+	self assert: slot type predicate argumentCount equals: 1.
+	self assert: slot type equals: (ValidatorType new predicate: [ :x | x > 0 ] ; yourself).
+	self assert: slot definitionString equals: '#testSlot satisfy: [ :x | x > 0 ]'
 ]

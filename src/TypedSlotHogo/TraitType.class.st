@@ -2,7 +2,7 @@ Class {
 	#name : #TraitType,
 	#superclass : #AbstractType,
 	#instVars : [
-		'type'
+		'trait'
 	],
 	#category : #TypedSlotHogo
 }
@@ -14,26 +14,31 @@ TraitType class >> initialSelector [
 
 { #category : #testing }
 TraitType >> checkObjectType: anObject [
-	(type users includesAny: anObject class withAllSuperclasses)
+	(trait users includesAny: anObject class withAllSuperclasses)
 		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
 
 { #category : #printing }
 TraitType >> definitionStringOn: aStream [
-	aStream print: type 
+	aStream print: trait 
 ]
 
 { #category : #testing }
 TraitType >> hasSameTypeAs: aType [
-	 ^ type = aType type
+	 ^ trait = aType trait
 ]
 
 { #category : #testing }
-TraitType >> type [ 
-	^ type
+TraitType >> isTraitType [
+	^ true
 ]
 
 { #category : #testing }
-TraitType >> type: aType [
-	type := aType
+TraitType >> trait [
+	^ trait
+]
+
+{ #category : #testing }
+TraitType >> trait: aType [
+	trait := aType
 ]

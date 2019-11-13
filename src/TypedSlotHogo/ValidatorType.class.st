@@ -24,7 +24,13 @@ ValidatorType >> definitionStringOn: aStream [
 
 { #category : #printing }
 ValidatorType >> hasSameTypeAs: aType [
-	^ predicate = aType predicate
+	"we compare ASTs since blocks have other instance variables that may not be the same"
+	^ predicate sourceNode = aType predicate sourceNode
+]
+
+{ #category : #printing }
+ValidatorType >> isValidator [
+	^ true
 ]
 
 { #category : #printing }

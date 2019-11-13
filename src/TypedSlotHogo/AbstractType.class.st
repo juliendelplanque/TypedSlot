@@ -1,3 +1,18 @@
+"
+I represent an of AbstractType
+
+I declare what methods needs to be implemented to add my custom type.
+I also declare class tester for the rest of the hierarchy, as well as offering a few methods.
+
+I am usually in a TypedSlot to constrain what is written to a slot, or as a Type annotation for class understanding.
+
+My subclasses need to define:
+	-checkObjectType:
+	-definitionStringOn:
+	-hasSameTypeAs:
+
+- TypeViolationWith: offer a way to throw a Type error
+"
 Class {
 	#name : #AbstractType,
 	#superclass : #Object,
@@ -9,7 +24,9 @@ Class {
 
 { #category : #printing }
 AbstractType class >> initialSelector [
-	^ #understands:
+	"a symbol representing the selector of the message send to the symbol of the slot
+	would return #type: in the following example: #anIV type: SmallInteger."
+	self subclassResponsibility
 ]
 
 { #category : #testing }
@@ -25,17 +42,21 @@ AbstractType >> asTypeConstraint [
 
 { #category : #testing }
 AbstractType >> checkObjectType: anObject [
+	"called by #write:to: to check that anObject satisfy the constraint, should raise a error otherwise"
 	self subclassResponsibility
 ]
 
 { #category : #printing }
 AbstractType >> definitionStringOn: aStream [
-	^ self subclassResponsibility
+	"fills up the stream with what will be put after the initial selector in the class definition"
+	self subclassResponsibility
 ]
 
 { #category : #testing }
 AbstractType >> hasSameTypeAs: aType [
-	self subclassResponsibility 
+	"called by self >> #equal. Needs to implement this on the assumption that aType is the same class"
+	" returns a boolean"
+	^ self subclassResponsibility 
 ]
 
 { #category : #testing }
@@ -60,6 +81,16 @@ AbstractType >> isMultipleType [
 
 { #category : #testing }
 AbstractType >> isSingleType [
+	^ false
+]
+
+{ #category : #testing }
+AbstractType >> isTraitType [
+	^ false
+]
+
+{ #category : #testing }
+AbstractType >> isValidator [
 	^ false
 ]
 

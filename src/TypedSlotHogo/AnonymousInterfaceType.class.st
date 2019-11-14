@@ -1,9 +1,12 @@
 "
-An interface:
-- declares only method selectors
-- cannot be instantiated.
-- can be used to type a TypedSlot
-- can extend several other interfaces.
+I represent a anonymous interface for a typed slot.
+
+I am declared anonymously for a slot using symbols or arrays of byteSymbols.
+
+	Try me! 
+	creation: #anIV understands: #+.
+	or: #anIV understands: {#+}.
+	
 "
 Class {
 	#name : #AnonymousInterfaceType,

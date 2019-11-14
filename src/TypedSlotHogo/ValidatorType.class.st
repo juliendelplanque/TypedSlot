@@ -1,3 +1,16 @@
+"
+I represent a validator constraint for type slots.
+I constraints values written to the slot to be able to satisfy the predicate written in a block.
+
+	Try This!
+	creation: #testSlot satisfy: [ :x | x > 0 ]
+	0 would be denied.
+	1 would work.
+	{} wouldn't understand the message, which would denied it.
+
+	My #predicate variable is a blockclosure, that takes one argument (the value that is written to an iv.)
+
+"
 Class {
 	#name : #ValidatorType,
 	#superclass : #AbstractType,

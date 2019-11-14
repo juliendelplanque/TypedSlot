@@ -1,3 +1,14 @@
+"
+I represent a Trait constraint for a typed slot.
+I contraints values written inside the slot to use a specific trait.
+
+	Try This!
+	creation: #testSlot mustUse: MockTraitForTests
+	The only Object currently using this trait is MockObjectUsingTrait, so only its instances could be inside that slot.
+
+	my #trait instanceVariable contains a direct reference to a trait.
+	
+"
 Class {
 	#name : #TraitType,
 	#superclass : #AbstractType,

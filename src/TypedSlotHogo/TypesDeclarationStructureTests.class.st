@@ -1,3 +1,8 @@
+"
+This class contains structural tests for declarations of typed slots.
+
+
+"
 Class {
 	#name : #TypesDeclarationStructureTests,
 	#superclass : #TestCase,
@@ -7,7 +12,7 @@ Class {
 { #category : #basic }
 TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
 	| slot |
-	slot :=#anIV understands: {#+} .
+	slot := #anIV understands: {#+} .
 	self assert: slot type isInterfaceType.
 	self assert: slot type interface name isNil.
 	self assert: slot type interface selectors isArray.

@@ -1,3 +1,11 @@
+"
+I represent a interface contraint.
+I constraint object that are written in a slot using me to be able to understand my #interface variables.
+
+I can be either Anonymous or Named for now, see my subclasses.
+
+	My #interface variable contains an Interface.
+"
 Class {
 	#name : #AbstractInterfaceType,
 	#superclass : #AbstractType,

@@ -1,3 +1,14 @@
+"
+I represent an Interface of selectors, as a Java interface.
+I can either be used anonymously by instanciating myself,
+or subclassed to be given a name.
+
+For named interfaces, as a first version, I fill my own #selectors variable on instance creation in the #initialize method. See InterfacePlus for an example.
+
+	my #selectors instance variable contains the selectors (using symbols) that I represent
+	my #extendedInterfaces variables contains a reference to other interfaces I am extending (in the java sense). I can only extend interfaces with whom I have no selector in common. (an exemple of this would be nice)
+	
+"
 Class {
 	#name : #Interface,
 	#superclass : #Object,

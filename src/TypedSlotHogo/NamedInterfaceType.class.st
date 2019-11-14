@@ -1,3 +1,10 @@
+"
+I represent a named interface for a typed slot.
+
+I am declared using a reference to an existing interface for a slot.
+	Try me! 
+	creation: #anIV understands: InterfacePlus.
+"
 Class {
 	#name : #NamedInterfaceType,
 	#superclass : #AbstractInterfaceType,

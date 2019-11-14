@@ -1,3 +1,15 @@
+"
+I represent a collection type.
+	
+	Try This!
+	creation:  #anAssociationTypedIV type: (Association keyType: Character valueType: SmallInteger).
+	$a -> 1 is an Object that would fit this slot.
+
+    Instance Variables
+	My #keyType contains an abstract type.
+	My #valueType contains an abstract type.
+
+"
 Class {
 	#name : #AssociationType,
 	#superclass : #AbstractCompositeType,

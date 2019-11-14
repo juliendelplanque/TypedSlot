@@ -1,3 +1,7 @@
+"
+I am an interface representing the selector #+.
+
+"
 Class {
 	#name : #InterfacePlus,
 	#superclass : #Interface,

@@ -1,6 +1,10 @@
 "
 I represent a multiple types constraint.
 
+	Try This!
+	creation: #aMultipleTypeIV type: {SmallInteger. Float}
+	either 1 or 1.5 could be put in that slot.
+	
 	my #types variables contains an array of types.
 "
 Class {

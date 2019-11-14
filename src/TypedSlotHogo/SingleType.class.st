@@ -1,6 +1,10 @@
 "
 I represent Single type constraint.
 
+	Try This!
+	creation: #anIV type: String.
+	'astring' could be put in this slot.
+
 	My #type variable contains a class.
 "
 Class {

@@ -1,3 +1,16 @@
+"
+I represent a collection type.
+	
+	Try This!
+	creation: #aCollectionTypedIV type: (Array of: Character)
+	{ $a. $b } is something that would fit this slot.
+
+    Instance Variables
+	My #collectionType contains an abstract type. No limitation for now, but I'm not sure it makes sense to allow anything but a SingleType inside it. Maybe a multipleType, but not a collectionType.
+	My #elementType contains an abstract type.
+
+
+"
 Class {
 	#name : #CollectionType,
 	#superclass : #AbstractType,

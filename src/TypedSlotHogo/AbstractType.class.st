@@ -5,6 +5,8 @@ I declare what methods needs to be implemented to add my custom type.
 I also declare class tester for the rest of the hierarchy, as well as offering a few methods.
 
 I am usually in a TypedSlot to constrain what is written to a slot, or as a Type annotation for class understanding.
+I can be put recursively into another type, for example: 
+#aCollectionTypedIV type: (Array of: {Character. SmallInteger})
 
 My subclasses need to define:
 	-checkObjectType:

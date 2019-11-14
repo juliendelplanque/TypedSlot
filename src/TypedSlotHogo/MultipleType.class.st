@@ -1,3 +1,8 @@
+"
+I represent a multiple types constraint.
+
+	my #types variables contains an array of types.
+"
 Class {
 	#name : #MultipleType,
 	#superclass : #AbstractType,

@@ -1,7 +1,7 @@
 "
 I represent Single type constraint.
 
-My type variable contains a class.
+	My #type variable contains a class.
 "
 Class {
 	#name : #SingleType,
@@ -15,11 +15,6 @@ Class {
 { #category : #printing }
 SingleType class >> initialSelector [
 	^ #type:
-]
-
-{ #category : #comparing }
-SingleType >> = anotherType [
-	^ self class = anotherType class and: [ type = anotherType type ]
 ]
 
 { #category : #typing }

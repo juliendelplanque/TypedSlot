@@ -27,3 +27,8 @@ AnonymousInterfaceType >> definitionStringOn: aStream [
 AnonymousInterfaceType >> isAnonymous [
 	^ true
 ]
+
+{ #category : #printing }
+AnonymousInterfaceType >> typeViolationWith: anObject [
+	(TypeViolation expectedType: self interface objectAttemptedToBeWritten: anObject) signal
+]

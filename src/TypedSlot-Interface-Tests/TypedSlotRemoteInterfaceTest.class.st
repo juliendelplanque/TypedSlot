@@ -6,15 +6,15 @@ Class {
 
 { #category : #tests }
 TypedSlotRemoteInterfaceTest >> testCheckObjectType [
-	| interfaceSource |
-	interfaceSource := RemoteInterface source: FooableObject.
-	self shouldnt: [ interfaceSource checkObjectType: FooableObject new ] raise: TypeViolation.
+	| interface |
+	interface := NamedInterfaceType from: FooableObject.
+	self shouldnt: [ interface checkObjectType: FooableObject new ] raise: TypeViolation.
 	
 	self
-		should: [ interfaceSource checkObjectType: 'string' ]
+		should: [ interface checkObjectType: 'string' ]
 		raise: TypeViolation
 		withExceptionDo: [ :typeViolation | 
-			self assert: typeViolation expectedType equals: interfaceSource interface.
+			self assert: typeViolation expectedType equals: interface.
 			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ]
 ]
 

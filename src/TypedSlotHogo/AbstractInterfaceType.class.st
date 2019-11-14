@@ -15,7 +15,7 @@ AbstractInterfaceType class >> initialSelector [
 { #category : #checking }
 AbstractInterfaceType >> checkObjectType: anObject [
 	(anObject class selectors includesAll: interface selectors)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
+		ifFalse: [ self typeViolationWith: anObject ]
 ]
 
 { #category : #testing }

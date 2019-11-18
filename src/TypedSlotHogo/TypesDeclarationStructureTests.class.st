@@ -123,6 +123,16 @@ TypesDeclarationStructureTests >> testSingleType [
 ]
 
 { #category : #basic }
+TypesDeclarationStructureTests >> testSingleTypeUsingAnArray [
+	| slot |
+	slot :=#anIV type: { String }.
+	self assert: slot type isSingleType.
+	self assert: slot type type equals: String.
+	self assert: slot type equals: (SingleType new type:String; yourself).
+	self assert: slot definitionString equals: '#anIV type: String'
+]
+
+{ #category : #basic }
 TypesDeclarationStructureTests >> testTraitType [
 	| slot |
 	slot := #testSlot mustUse: MockTraitForTests.

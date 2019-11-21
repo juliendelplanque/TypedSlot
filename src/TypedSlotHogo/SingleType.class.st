@@ -21,6 +21,11 @@ SingleType class >> initialSelector [
 	^ #type:
 ]
 
+{ #category : #debug }
+SingleType >> allTypes [
+	^ { type } asSet
+]
+
 { #category : #typing }
 SingleType >> checkObjectType: anObject [
 	((anObject isKindOf: type) or: [ anObject isNil ]) ifFalse: [ self typeViolationWith: anObject ]

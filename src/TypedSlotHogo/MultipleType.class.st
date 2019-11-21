@@ -21,6 +21,11 @@ MultipleType class >> initialSelector [
 	^ #type:
 ]
 
+{ #category : #debug }
+MultipleType >> allTypes [
+	^ (types flatCollect: [:aType| aType allTypes ]) asSet
+]
+
 { #category : #typing }
 MultipleType >> checkObjectType: anObject [
 	((types anySatisfy: [:aType| anObject isKindOf: aType]) or: [ anObject isNil ]) ifFalse: [ self typeViolationWith: anObject ]

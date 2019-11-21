@@ -26,6 +26,11 @@ CollectionType class >> initialSelector [
 	^ #type:
 ]
 
+{ #category : #debug }
+CollectionType >> allTypes [
+	^ (collectionType allTypes + elementType allTypes) asSet
+]
+
 { #category : #testing }
 CollectionType >> checkObjectType: anObject [
 	(anObject isNil 

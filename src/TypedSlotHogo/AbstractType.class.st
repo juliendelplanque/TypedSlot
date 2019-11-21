@@ -36,6 +36,12 @@ AbstractType >> = anotherType [
 	^ 	self == anotherType or:[ self class = anotherType class and: [ self hasSameTypeAs: anotherType ]]
 ]
 
+{ #category : #debug }
+AbstractType >> allTypes [
+	" It should return all types used. Only for debug purpose"
+	^ self subclassResponsibility 
+]
+
 { #category : #creation }
 AbstractType >> asTypeConstraint [
 	"If it's in that hierarchy, it's already a type"

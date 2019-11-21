@@ -25,6 +25,11 @@ AssociationType class >> initialSelector [
 	^ #type:
 ]
 
+{ #category : #debug }
+AssociationType >> allTypes [
+	^ ( keyType allTypes + valueType allTypes ) asSet
+]
+
 { #category : #typing }
 AssociationType >> checkObjectType: anObject [
 	(anObject isNil 

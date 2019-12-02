@@ -6,8 +6,8 @@ I am declared using a reference to an existing interface for a slot.
 	creation: #anIV understands: InterfacePlus.
 "
 Class {
-	#name : #NamedInterfaceType,
-	#superclass : #AbstractInterfaceType,
+	#name : #NamedInterfaceConstraint,
+	#superclass : #AbstractInterfactConstraint,
 	#instVars : [
 		'interfaceSource',
 		'interfaceSelector'
@@ -16,11 +16,11 @@ Class {
 }
 
 { #category : #'instance creation' }
-NamedInterfaceType class >> from: aClass [
+NamedInterfaceConstraint class >> from: aClass [
 	^ self new interface: (Interface selectors: aClass selectors)
 ]
 
 { #category : #printing }
-NamedInterfaceType >> definitionStringOn: aStream [
+NamedInterfaceConstraint >> definitionStringOn: aStream [
 	aStream << interface name
 ]

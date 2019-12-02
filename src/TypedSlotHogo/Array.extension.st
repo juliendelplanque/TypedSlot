@@ -2,7 +2,7 @@ Extension { #name : #Array }
 
 { #category : #'*TypedSlotHogo' }
 Array >> asInterfaceConstraint [
-	^ AnonymousInterfaceType selectors: self 
+	^ AnonymousInterfaceConstraint selectors: self 
 ]
 
 { #category : #'*TypedSlotHogo' }

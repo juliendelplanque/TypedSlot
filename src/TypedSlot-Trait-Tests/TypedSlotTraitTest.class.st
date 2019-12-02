@@ -9,11 +9,11 @@ Class {
 
 { #category : #tests }
 TypedSlotTraitTest >> testCheckObjectType [
-	self shouldnt: [ MockTraitForTests checkObjectType: MockObjectUsingTrait new ] raise: TypeViolation.
+	self shouldnt: [ MockTraitForTests checkConstraint: MockObjectUsingTrait new ] raise: ConstraintViolation.
 	
 	self
-		should: [ MockTraitForTests checkObjectType: 'string' ]
-		raise: TypeViolation
+		should: [ MockTraitForTests checkConstraint: 'string' ]
+		raise: ConstraintViolation
 		withExceptionDo: [ :typeViolation | 
 			self assert: typeViolation expectedType equals: MockTraitForTests.
 			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ]
@@ -26,12 +26,12 @@ TypedSlotTraitTest >> testWriteTo [
 	mockObject := MockObjectForTypedSlotUsingTrait new.
 	
 	expectedObject := MockObjectUsingTrait new.
-	self shouldnt: [ testSlot write: expectedObject to: mockObject ] raise: TypeViolation.
+	self shouldnt: [ testSlot write: expectedObject to: mockObject ] raise: ConstraintViolation.
 	self assert: (testSlot read: mockObject) equals: expectedObject.
 	
-	self shouldnt: [ testSlot write: nil to: mockObject ] raise: TypeViolation.
+	self shouldnt: [ testSlot write: nil to: mockObject ] raise: ConstraintViolation.
 	self assert: (testSlot read: mockObject) equals: nil.
 	
-	self should: [ testSlot write: 'string' to: mockObject ] raise: TypeViolation.
+	self should: [ testSlot write: 'string' to: mockObject ] raise: ConstraintViolation.
 	self assert: (testSlot read: mockObject) equals: nil.
 ]

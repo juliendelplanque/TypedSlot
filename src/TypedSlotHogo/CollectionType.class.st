@@ -13,7 +13,7 @@ I represent a collection type.
 "
 Class {
 	#name : #CollectionType,
-	#superclass : #AbstractType,
+	#superclass : #AbstractTypeConstraint,
 	#instVars : [
 		'collectionType',
 		'elementType'
@@ -32,11 +32,11 @@ CollectionType >> allTypes [
 ]
 
 { #category : #testing }
-CollectionType >> checkObjectType: anObject [
+CollectionType >> checkConstraint: anObject [
 	(anObject isNil 
 		or: [ (anObject isKindOf: collectionType type) 
-		and: [ anObject do: [:anElement| elementType checkObjectType: anElement ]. true "If we don't get a type violation during the #do:, all element comply." ] ] ) 
-		ifFalse: [ self typeViolationWith: anObject ]
+		and: [ anObject do: [:anElement| elementType checkConstraint: anElement ]. true "If we don't get a type violation during the #do:, all element comply." ] ] ) 
+		ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #accessing }
@@ -70,7 +70,7 @@ CollectionType >> elementType: aType [
 ]
 
 { #category : #comparing }
-CollectionType >> hasSameTypeAs: anotherType [
+CollectionType >> hasSamePropertiesAs: anotherType [
 	^ collectionType = anotherType collectionType and:[ elementType = anotherType elementType ]
 ]
 

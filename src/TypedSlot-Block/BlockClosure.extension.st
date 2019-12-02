@@ -2,14 +2,14 @@ Extension { #name : #BlockClosure }
 
 { #category : #'*TypedSlot-Block' }
 BlockClosure >> asTypeConstraint [
-	^ ValidatorType new
+	^ PredicateConstraint new
 		predicate: self;
 		yourself
 ]
 
 { #category : #'*TypedSlot-Block' }
-BlockClosure >> checkObjectType: anObject [
+BlockClosure >> checkConstraint: anObject [
 	"In case of error during block evaluation, object is not valid for the slot."
 	([ self value: anObject ] on: Error do: [ false ]) 
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
+		ifFalse: [ (ConstraintViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]

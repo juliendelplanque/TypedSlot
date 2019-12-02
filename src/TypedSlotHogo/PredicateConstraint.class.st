@@ -12,8 +12,8 @@ I constraints values written to the slot to be able to satisfy the predicate wri
 
 "
 Class {
-	#name : #ValidatorType,
-	#superclass : #AbstractType,
+	#name : #PredicateConstraint,
+	#superclass : #AbstractConstraint,
 	#instVars : [
 		'predicate'
 	],
@@ -21,37 +21,37 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-ValidatorType class >> initialSelector [
+PredicateConstraint class >> initialSelector [
 	^ #satisfy:
 ]
 
 { #category : #testing }
-ValidatorType >> checkObjectType: anObject [
-	([ predicate value: anObject ] on: Error do: [ false ]) ifFalse: [ self typeViolationWith: anObject ]
+PredicateConstraint >> checkConstraint: anObject [
+	([ predicate value: anObject ] on: Error do: [ false ]) ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #printing }
-ValidatorType >> definitionStringOn: aStream [
+PredicateConstraint >> definitionStringOn: aStream [
 	aStream print: predicate
 ]
 
 { #category : #printing }
-ValidatorType >> hasSameTypeAs: aType [
+PredicateConstraint >> hasSamePropertiesAs: aType [
 	"we compare ASTs since blocks have other instance variables that may not be the same"
 	^ predicate sourceNode = aType predicate sourceNode
 ]
 
 { #category : #printing }
-ValidatorType >> isValidator [
+PredicateConstraint >> isValidator [
 	^ true
 ]
 
 { #category : #printing }
-ValidatorType >> predicate [
+PredicateConstraint >> predicate [
 	^ predicate
 ]
 
 { #category : #printing }
-ValidatorType >> predicate: aBlock [ 
+PredicateConstraint >> predicate: aBlock [ 
 	predicate := aBlock
 ]

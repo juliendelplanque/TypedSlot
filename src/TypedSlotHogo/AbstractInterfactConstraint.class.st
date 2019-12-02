@@ -7,8 +7,8 @@ I can be either Anonymous or Named for now, see my subclasses.
 	My #interface variable contains an Interface.
 "
 Class {
-	#name : #AbstractInterfaceType,
-	#superclass : #AbstractType,
+	#name : #AbstractInterfactConstraint,
+	#superclass : #AbstractConstraint,
 	#instVars : [
 		'interface'
 	],
@@ -16,37 +16,37 @@ Class {
 }
 
 { #category : #accessing }
-AbstractInterfaceType class >> initialSelector [
+AbstractInterfactConstraint class >> initialSelector [
 	^ #understands: 
 ]
 
 { #category : #checking }
-AbstractInterfaceType >> checkObjectType: anObject [
+AbstractInterfactConstraint >> checkConstraint: anObject [
 	(anObject class selectors includesAll: interface selectors)
-		ifFalse: [ self typeViolationWith: anObject ]
+		ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #testing }
-AbstractInterfaceType >> hasSameTypeAs: anInterfaceType [
+AbstractInterfactConstraint >> hasSamePropertiesAs: anInterfaceType [
 	^ interface = anInterfaceType interface
 ]
 
 { #category : #accessing }
-AbstractInterfaceType >> interface [
+AbstractInterfactConstraint >> interface [
 	^ interface
 ]
 
 { #category : #accessing }
-AbstractInterfaceType >> interface: anObject [
+AbstractInterfactConstraint >> interface: anObject [
 	interface := anObject
 ]
 
 { #category : #testing }
-AbstractInterfaceType >> isAnonymous [
+AbstractInterfactConstraint >> isAnonymous [
 	^ false
 ]
 
 { #category : #testing }
-AbstractInterfaceType >> isInterfaceType [
+AbstractInterfactConstraint >> isInterfaceType [
 	^ true
 ]

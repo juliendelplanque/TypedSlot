@@ -10,8 +10,8 @@ I contraints values written inside the slot to use a specific trait.
 	
 "
 Class {
-	#name : #TraitType,
-	#superclass : #AbstractType,
+	#name : #TraitConstraint,
+	#superclass : #AbstractConstraint,
 	#instVars : [
 		'trait'
 	],
@@ -19,37 +19,37 @@ Class {
 }
 
 { #category : #printing }
-TraitType class >> initialSelector [
+TraitConstraint class >> initialSelector [
 	^#mustUse:
 ]
 
 { #category : #testing }
-TraitType >> checkObjectType: anObject [
+TraitConstraint >> checkConstraint: anObject [
 	(trait users includesAny: anObject class withAllSuperclasses)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
+		ifFalse: [ (ConstraintViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
 
 { #category : #printing }
-TraitType >> definitionStringOn: aStream [
+TraitConstraint >> definitionStringOn: aStream [
 	aStream print: trait 
 ]
 
 { #category : #testing }
-TraitType >> hasSameTypeAs: aType [
+TraitConstraint >> hasSamePropertiesAs: aType [
 	 ^ trait = aType trait
 ]
 
 { #category : #testing }
-TraitType >> isTraitType [
+TraitConstraint >> isTraitType [
 	^ true
 ]
 
 { #category : #testing }
-TraitType >> trait [
+TraitConstraint >> trait [
 	^ trait
 ]
 
 { #category : #testing }
-TraitType >> trait: aType [
+TraitConstraint >> trait: aType [
 	trait := aType
 ]

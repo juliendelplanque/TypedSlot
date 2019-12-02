@@ -37,7 +37,7 @@ TypedSlotTest >> testIntegerSlot [
 		object integerSlot: 1.
 		self assert: object integerSlot equals: 1.
 	
-		self should: [ object integerSlot: 'test' ] raise: TypeViolation.
+		self should: [ object integerSlot: 'test' ] raise: ConstraintViolation.
 	
 		object integerSlot: nil.
 		self assert: object integerSlot equals: nil ]
@@ -51,7 +51,7 @@ TypedSlotTest >> testIntegerSlotClassDisabled [
 		object integerSlot: 1.
 		self assert: object integerSlot equals: 1.
 	
-		self shouldnt: [ object integerSlot: 'test' ] raise: TypeViolation.
+		self shouldnt: [ object integerSlot: 'test' ] raise: ConstraintViolation.
 		self assert: object integerSlot equals: 'test'.
 	
 		object integerSlot: nil.
@@ -67,7 +67,7 @@ TypedSlotTest >> testIntegerSlotInstanceDisabled [
 	object integerSlot: 1.
 	self assert: object integerSlot equals: 1.
 	
-	self shouldnt: [ object integerSlot: 'test' ] raise: TypeViolation.
+	self shouldnt: [ object integerSlot: 'test' ] raise: ConstraintViolation.
 	self assert: object integerSlot equals: 'test'.
 	
 	object integerSlot: nil.
@@ -83,7 +83,7 @@ TypedSlotTest >> testIntegerSlotInstanceEnabled [
 		object integerSlot: 1.
 		self assert: object integerSlot equals: 1.
 	
-		self should: [ object integerSlot: 'test' ] raise: TypeViolation.
+		self should: [ object integerSlot: 'test' ] raise: ConstraintViolation.
 	
 		object integerSlot: nil.
 		self assert: object integerSlot equals: nil ]

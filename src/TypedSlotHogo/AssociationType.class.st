@@ -31,12 +31,12 @@ AssociationType >> allTypes [
 ]
 
 { #category : #typing }
-AssociationType >> checkObjectType: anObject [
+AssociationType >> checkConstraint: anObject [
 	(anObject isNil 
 		or: [ (anObject isKindOf: Association ) 
 		and: [ (anObject key isKindOf: keyType) 
 		and: [ anObject value isKindOf: valueType ]]])
-		ifFalse: [ self typeViolationWith: anObject ]
+		ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #printing }
@@ -51,7 +51,7 @@ AssociationType >> definitionStringOn: aStream [
 ]
 
 { #category : #comparing }
-AssociationType >> hasSameTypeAs: anotherType [
+AssociationType >> hasSamePropertiesAs: anotherType [
 	^ keyType = anotherType keyType and: [ valueType = anotherType valueType ]
 ]
 

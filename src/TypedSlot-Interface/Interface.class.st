@@ -21,7 +21,7 @@ Class {
 
 { #category : #converting }
 Interface class >> asInterfaceConstraint [
-	^ NamedInterfaceType new interface: self new ; yourself
+	^ NamedInterfaceConstraint new interface: self new ; yourself
 ]
 
 { #category : #accessing }

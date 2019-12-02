@@ -9,7 +9,7 @@ I represent Single type constraint.
 "
 Class {
 	#name : #SingleType,
-	#superclass : #AbstractType,
+	#superclass : #AbstractTypeConstraint,
 	#instVars : [
 		'type'
 	],
@@ -27,8 +27,8 @@ SingleType >> allTypes [
 ]
 
 { #category : #typing }
-SingleType >> checkObjectType: anObject [
-	((anObject isKindOf: type) or: [ anObject isNil ]) ifFalse: [ self typeViolationWith: anObject ]
+SingleType >> checkConstraint: anObject [
+	((anObject isKindOf: type) or: [ anObject isNil ]) ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #accessing }
@@ -38,7 +38,7 @@ SingleType >> definitionStringOn: aStream [
 ]
 
 { #category : #comparing }
-SingleType >> hasSameTypeAs: anotherType [
+SingleType >> hasSamePropertiesAs: anotherType [
 	^ type = anotherType type
 ]
 

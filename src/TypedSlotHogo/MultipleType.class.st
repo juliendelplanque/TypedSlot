@@ -9,7 +9,7 @@ I represent a multiple types constraint.
 "
 Class {
 	#name : #MultipleType,
-	#superclass : #AbstractType,
+	#superclass : #AbstractTypeConstraint,
 	#instVars : [
 		'types'
 	],
@@ -27,8 +27,8 @@ MultipleType >> allTypes [
 ]
 
 { #category : #typing }
-MultipleType >> checkObjectType: anObject [
-	((types anySatisfy: [:aType| anObject isKindOf: aType]) or: [ anObject isNil ]) ifFalse: [ self typeViolationWith: anObject ]
+MultipleType >> checkConstraint: anObject [
+	((types anySatisfy: [:aType| anObject isKindOf: aType]) or: [ anObject isNil ]) ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
 { #category : #accessing }
@@ -42,7 +42,7 @@ MultipleType >> definitionStringOn: aStream [
 ]
 
 { #category : #testing }
-MultipleType >> hasSameTypeAs: anotherType [
+MultipleType >> hasSamePropertiesAs: anotherType [
 	^ types = anotherType types
 ]
 

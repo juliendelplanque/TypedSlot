@@ -9,29 +9,29 @@ I am declared anonymously for a slot using symbols or arrays of byteSymbols.
 	
 "
 Class {
-	#name : #AnonymousInterfaceType,
-	#superclass : #AbstractInterfaceType,
+	#name : #AnonymousInterfaceConstraint,
+	#superclass : #AbstractInterfactConstraint,
 	#category : #TypedSlotHogo
 }
 
 { #category : #accessing }
-AnonymousInterfaceType class >> selectors: aCollectionOfSymbols [
+AnonymousInterfaceConstraint class >> selectors: aCollectionOfSymbols [
 	^ self new
 		interface: (Interface selectors: aCollectionOfSymbols);
 		yourself
 ]
 
 { #category : #printing }
-AnonymousInterfaceType >> definitionStringOn: aStream [
+AnonymousInterfaceConstraint >> definitionStringOn: aStream [
 	aStream print: interface selectors asArray
 ]
 
 { #category : #testing }
-AnonymousInterfaceType >> isAnonymous [
+AnonymousInterfaceConstraint >> isAnonymous [
 	^ true
 ]
 
 { #category : #printing }
-AnonymousInterfaceType >> typeViolationWith: anObject [
-	(TypeViolation expectedType: self interface objectAttemptedToBeWritten: anObject) signal
+AnonymousInterfaceConstraint >> wasViolatedBy: anObject [
+	(ConstraintViolation expectedType: self interface objectAttemptedToBeWritten: anObject) signal
 ]

@@ -1,6 +1,6 @@
 Class {
 	#name : #EmptyType,
-	#superclass : #AbstractType,
+	#superclass : #AbstractTypeConstraint,
 	#category : #TypedSlotHogo
 }
 

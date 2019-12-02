@@ -55,7 +55,7 @@ TypedSlot >> checkTypeOfCurrentValueFor: anObject [
 	| currentValue |
 	currentValue := self read: anObject.
 	currentValue ifNil: [ ^ self ].
-	self type checkObjectType: currentValue
+	self type checkConstraint: currentValue
 ]
 
 { #category : #checking }
@@ -64,7 +64,7 @@ TypedSlot >> checkTypeOfValue: newValue for: anObject [
 		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
 
-	type checkObjectType: newValue
+	type checkConstraint: newValue
 ]
 
 { #category : #refactoring }

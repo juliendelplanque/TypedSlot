@@ -16,7 +16,7 @@ TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
 	self assert: slot type isInterfaceType.
 	self assert: slot type interface name isNil.
 	self assert: slot type interface selectors isArray.
-	self assert: slot type equals: (AnonymousInterfaceType new interface: (Interface selectors: #(#+)) ; yourself).
+	self assert: slot type equals: (AnonymousInterfaceConstraint new interface: (Interface selectors: #(#+)) ; yourself).
 	self assert: slot definitionString equals: '#anIV understands: #(#+)'
 ]
 
@@ -27,7 +27,7 @@ TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnSelector [
 	self assert: slot type isInterfaceType.
 	self assert: slot type interface name isNil.
 	self assert: slot type interface selectors isArray.
-	self assert: slot type equals: (AnonymousInterfaceType new interface:(Interface selectors: #(#+)) ; yourself).
+	self assert: slot type equals: (AnonymousInterfaceConstraint new interface:(Interface selectors: #(#+)) ; yourself).
 	self assert: slot definitionString equals: '#anIV understands: #(#+)'
 ]
 
@@ -108,7 +108,7 @@ TypesDeclarationStructureTests >> testNamedInterface [
 	self assert: slot type isInterfaceType.
 	self assert: slot type interface selectors class = Set.
 	self assert: slot type interface name equals: #InterfacePlus.
-	self assert: slot type equals: (NamedInterfaceType new interface: InterfacePlus new ; yourself).
+	self assert: slot type equals: (NamedInterfaceConstraint new interface: InterfacePlus new ; yourself).
 	self assert: slot definitionString equals: '#anIV understands: InterfacePlus'
 ]
 
@@ -138,7 +138,7 @@ TypesDeclarationStructureTests >> testTraitType [
 	slot := #testSlot mustUse: MockTraitForTests.
 	self assert: slot type isTraitType.
 	self assert: slot type trait equals: MockTraitForTests.
-	self assert: slot type equals: (TraitType new trait: MockTraitForTests ; yourself).
+	self assert: slot type equals: (TraitConstraint new trait: MockTraitForTests ; yourself).
 	self assert: slot definitionString equals: '#testSlot mustUse: MockTraitForTests'
 ]
 
@@ -149,6 +149,6 @@ TypesDeclarationStructureTests >> testValidatorType [
 	self assert: slot type isValidator.
 	self assert: slot type predicate isBlock.
 	self assert: slot type predicate argumentCount equals: 1.
-	self assert: slot type equals: (ValidatorType new predicate: [ :x | x > 0 ] ; yourself).
+	self assert: slot type equals: (PredicateConstraint new predicate: [ :x | x > 0 ] ; yourself).
 	self assert: slot definitionString equals: '#testSlot satisfy: [ :x | x > 0 ]'
 ]

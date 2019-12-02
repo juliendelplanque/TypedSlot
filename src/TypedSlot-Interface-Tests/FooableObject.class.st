@@ -6,7 +6,7 @@ Class {
 
 { #category : #accessing }
 FooableObject class >> interface [
-	^ AnonymousInterfaceType selectors: {#foo}
+	^ AnonymousInterfaceConstraint selectors: {#foo}
 ]
 
 { #category : #accessing }

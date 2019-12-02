@@ -28,7 +28,7 @@ CollectionType class >> initialSelector [
 
 { #category : #debug }
 CollectionType >> allTypes [
-	^ (collectionType allTypes + elementType allTypes) asSet
+	^ (collectionType allTypes , elementType allTypes) asSet
 ]
 
 { #category : #testing }

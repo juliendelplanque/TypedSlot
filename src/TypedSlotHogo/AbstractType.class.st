@@ -78,6 +78,11 @@ AbstractType >> isCompositeType [
 ]
 
 { #category : #testing }
+AbstractType >> isEmptyType [
+	^ false
+]
+
+{ #category : #testing }
 AbstractType >> isInterfaceType [
 	^ false
 ]

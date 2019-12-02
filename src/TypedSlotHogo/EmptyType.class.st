@@ -8,3 +8,8 @@ Class {
 EmptyType >> allTypes [
 	^ Set new
 ]
+
+{ #category : #debug }
+EmptyType >> isEmptyType [
+	^ true
+]

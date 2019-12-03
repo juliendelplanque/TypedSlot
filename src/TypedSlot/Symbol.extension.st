@@ -17,7 +17,7 @@ Symbol >> satisfy: aPredicate [
 
 { #category : #'*TypedSlot' }
 Symbol >> type: aType [
-	^ self => TypedSlot type: aType asTypeConstraint
+	^ self => TypedSlot type: aType asConstraint
 ]
 
 { #category : #'*TypedSlot' }

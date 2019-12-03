@@ -1,7 +1,7 @@
 Extension { #name : #Trait }
 
 { #category : #'*TypedSlot-Trait' }
-Trait >> asTypeConstraint [
+Trait >> asConstraint [
 	^ TraitConstraint new
 		trait: self ;
 		yourself.

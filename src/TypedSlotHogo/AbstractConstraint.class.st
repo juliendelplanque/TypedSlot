@@ -33,7 +33,7 @@ AbstractConstraint >> = anotherType [
 ]
 
 { #category : #creation }
-AbstractConstraint >> asTypeConstraint [
+AbstractConstraint >> asConstraint [
 	"If it's in this class hierarchy, it's already a type"
 	^ self
 ]

@@ -65,7 +65,8 @@ MultipleType >> types [
 ]
 
 { #category : #accessing }
-MultipleType >> types: aType [
-	self assert: aType isCollection.
-	types := aType
+MultipleType >> types: aCollectionOfType [
+	self assert: aCollectionOfType isCollection.
+	
+	types := aCollectionOfType asOrderedCollection
 ]

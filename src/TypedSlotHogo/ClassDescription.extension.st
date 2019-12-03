@@ -1,7 +1,7 @@
 Extension { #name : #ClassDescription }
 
 { #category : #'*TypedSlotHogo' }
-ClassDescription >> asTypeConstraint [
+ClassDescription >> asConstraint [
 	^ SingleType new type: self; yourself
 		
 ]

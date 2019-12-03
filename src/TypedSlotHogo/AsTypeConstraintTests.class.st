@@ -15,7 +15,7 @@ Class {
 AsTypeConstraintTests >> testArrayClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Array "
-	type := Array asTypeConstraint.
+	type := Array asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: Array
 ]
@@ -23,7 +23,7 @@ AsTypeConstraintTests >> testArrayClass [
 { #category : #collection }
 AsTypeConstraintTests >> testArrayOneElement [
 	| type |
-	type := { String } asTypeConstraint.
+	type := { String } asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: String.
 ]
@@ -31,7 +31,7 @@ AsTypeConstraintTests >> testArrayOneElement [
 { #category : #collection }
 AsTypeConstraintTests >> testArrayTwoElement [
 	| type |
-	type := { String. SmallInteger } asTypeConstraint.
+	type := { String. SmallInteger } asConstraint.
 	self assert: type isMultipleType.
 	self assert: type types equals: { SingleType new type: String; yourself. SingleType new type: SmallInteger; yourself } asOrderedCollection.
 ]
@@ -40,7 +40,7 @@ AsTypeConstraintTests >> testArrayTwoElement [
 AsTypeConstraintTests >> testBlockClosureClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of BlockClosure "
-	type := BlockClosure asTypeConstraint.
+	type := BlockClosure asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: BlockClosure
 ]
@@ -48,7 +48,7 @@ AsTypeConstraintTests >> testBlockClosureClass [
 { #category : #basic }
 AsTypeConstraintTests >> testClass [
 	| type |
-	type := String asTypeConstraint.
+	type := String asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: String
 ]
@@ -57,20 +57,20 @@ AsTypeConstraintTests >> testClass [
 AsTypeConstraintTests >> testCollectionClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Collection "
-	type := Collection asTypeConstraint.
+	type := Collection asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: Collection
 ]
 
 { #category : #basic }
 AsTypeConstraintTests >> testNonMetaInstance [
-	self should: [ 1 asTypeConstraint ] raise: MessageNotUnderstood 
+	self should: [ 1 asConstraint ] raise: MessageNotUnderstood 
 ]
 
 { #category : #collection }
 AsTypeConstraintTests >> testOrderCollectionOfString [
 	| type |
-	type := { String } asOrderedCollection asTypeConstraint.
+	type := { String } asOrderedCollection asConstraint.
 	self assert: type isCollectionType.
 	self assert: type collectionType equals: (SingleType new type: OrderedCollection ; yourself).
 	self assert: type elementType equals: (SingleType new type: String; yourself).
@@ -80,7 +80,7 @@ AsTypeConstraintTests >> testOrderCollectionOfString [
 AsTypeConstraintTests >> testPredicate [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
-	type := [:a | a < 2 ] asTypeConstraint.
+	type := [:a | a < 2 ] asConstraint.
 	self assert: type isPredicateConstraint.
 	self assert: (type predicate isKindOf: BlockClosure).
 	self assert: type predicate sourceNode equals: [:a | a < 2 ] sourceNode.
@@ -89,7 +89,7 @@ AsTypeConstraintTests >> testPredicate [
 { #category : #collection }
 AsTypeConstraintTests >> testSetOfString [
 	| type |
-	type := { String } asSet asTypeConstraint.
+	type := { String } asSet asConstraint.
 	self assert: type isCollectionType.
 	self assert: type collectionType equals: (SingleType new type: Set ; yourself).
 	self assert: type elementType equals: (SingleType new type: String; yourself).
@@ -99,7 +99,7 @@ AsTypeConstraintTests >> testSetOfString [
 AsTypeConstraintTests >> testTrait [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
-	type := MockTraitForTests asTypeConstraint.
+	type := MockTraitForTests asConstraint.
 	self assert: type isTraitConstraint.
 	self assert: type trait equals: MockTraitForTests.
 ]
@@ -108,7 +108,7 @@ AsTypeConstraintTests >> testTrait [
 AsTypeConstraintTests >> testTraitClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
-	type := Trait asTypeConstraint.
+	type := Trait asConstraint.
 	self assert: type isSingleType.
 	self assert: type type equals: Trait.
 	

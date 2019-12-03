@@ -1,9 +1,9 @@
 Extension { #name : #Collection }
 
 { #category : #'*TypedSlotHogo' }
-Collection >> asTypeConstraint [
+Collection >> asConstraint [
 	^ CollectionType new 
-		collectionType: self class asTypeConstraint;
-		elementType: self asArray asTypeConstraint;
+		collectionType: self class asConstraint;
+		elementType: self asArray asConstraint;
 		yourself
 ]

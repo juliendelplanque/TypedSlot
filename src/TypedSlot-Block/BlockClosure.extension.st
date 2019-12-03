@@ -1,7 +1,7 @@
 Extension { #name : #BlockClosure }
 
 { #category : #'*TypedSlot-Block' }
-BlockClosure >> asTypeConstraint [
+BlockClosure >> asConstraint [
 	^ PredicateConstraint new
 		predicate: self;
 		yourself

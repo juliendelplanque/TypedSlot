@@ -14,7 +14,7 @@ TypedSlotInterfaceTest >> testCheckObjectType [
 		should: [ interface checkConstraint: 'string' ]
 		raise: ConstraintViolation
 		withExceptionDo: [ :typeViolation | 
-			self assert: typeViolation expectedType equals: interface interface.
+			self assert: typeViolation expectedType interface equals: interface interface.
 			self assert: typeViolation objectAttemptedToBeWritten equals: 'string' ]
 ]
 

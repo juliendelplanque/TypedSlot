@@ -30,8 +30,3 @@ AnonymousInterfaceConstraint >> definitionStringOn: aStream [
 AnonymousInterfaceConstraint >> isAnonymous [
 	^ true
 ]
-
-{ #category : #printing }
-AnonymousInterfaceConstraint >> wasViolatedBy: anObject [
-	(ConstraintViolation expectedType: self interface objectAttemptedToBeWritten: anObject) signal
-]

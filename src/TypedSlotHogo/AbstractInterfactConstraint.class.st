@@ -47,6 +47,6 @@ AbstractInterfactConstraint >> isAnonymous [
 ]
 
 { #category : #testing }
-AbstractInterfactConstraint >> isInterfaceType [
+AbstractInterfactConstraint >> isInterfaceConstraint [
 	^ true
 ]

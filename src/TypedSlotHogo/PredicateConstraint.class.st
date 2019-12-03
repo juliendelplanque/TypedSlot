@@ -42,7 +42,7 @@ PredicateConstraint >> hasSamePropertiesAs: aType [
 ]
 
 { #category : #printing }
-PredicateConstraint >> isValidator [
+PredicateConstraint >> isPredicateConstraint [
 	^ true
 ]
 

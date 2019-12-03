@@ -34,7 +34,7 @@ AbstractConstraint >> = anotherType [
 
 { #category : #creation }
 AbstractConstraint >> asTypeConstraint [
-	"If it's in that hierarchy, it's already a type"
+	"If it's in this class hierarchy, it's already a type"
 	^ self
 ]
 
@@ -63,8 +63,20 @@ AbstractConstraint >> isCollectionType [
 ]
 
 { #category : #testing }
+AbstractConstraint >> isCollectionTypeConstraint [
+	"Also available for naming consistency"
+	^ self isCollectionType
+]
+
+{ #category : #testing }
 AbstractConstraint >> isCompositeType [
 	^ false
+]
+
+{ #category : #testing }
+AbstractConstraint >> isCompositeTypeContraint [
+	"Also available for naming consistency"
+	^ self isCompositeType
 ]
 
 { #category : #testing }
@@ -73,7 +85,13 @@ AbstractConstraint >> isEmptyType [
 ]
 
 { #category : #testing }
-AbstractConstraint >> isInterfaceType [
+AbstractConstraint >> isEmptyTypeContraint [
+	"Also available for naming consistency"
+	^ self isEmptyType
+]
+
+{ #category : #testing }
+AbstractConstraint >> isInterfaceConstraint [
 	^ false
 ]
 
@@ -83,17 +101,29 @@ AbstractConstraint >> isMultipleType [
 ]
 
 { #category : #testing }
+AbstractConstraint >> isMultipleTypeContraint [
+	"Also available for naming consistency"
+	^ self isMultipleType
+]
+
+{ #category : #testing }
+AbstractConstraint >> isPredicateConstraint [
+	^ false
+]
+
+{ #category : #testing }
 AbstractConstraint >> isSingleType [
 	^ false
 ]
 
 { #category : #testing }
-AbstractConstraint >> isTraitType [
-	^ false
+AbstractConstraint >> isSingleTypeContraint [
+	"Also available for naming consistency"
+	^ self isSingleType
 ]
 
 { #category : #testing }
-AbstractConstraint >> isValidator [
+AbstractConstraint >> isTraitConstraint [
 	^ false
 ]
 

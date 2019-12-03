@@ -40,7 +40,7 @@ TraitConstraint >> hasSamePropertiesAs: aType [
 ]
 
 { #category : #testing }
-TraitConstraint >> isTraitType [
+TraitConstraint >> isTraitConstraint [
 	^ true
 ]
 

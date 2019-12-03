@@ -7,3 +7,8 @@ Collection >> asConstraint [
 		elementType: self asArray asConstraint;
 		yourself
 ]
+
+{ #category : #'*TypedSlotHogo' }
+Collection >> asTypeReification [
+	^ self asConstraint
+]

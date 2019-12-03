@@ -6,13 +6,13 @@ Scope tests checks that for special classes it applies differently for instances
 
 "
 Class {
-	#name : #AsTypeConstraintTests,
+	#name : #AsTypeConstraintTest,
 	#superclass : #TestCase,
 	#category : #TypedSlotHogo
 }
 
 { #category : #scope }
-AsTypeConstraintTests >> testArrayClass [
+AsTypeConstraintTest >> testArrayClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Array "
 	type := Array asConstraint.
@@ -21,7 +21,7 @@ AsTypeConstraintTests >> testArrayClass [
 ]
 
 { #category : #collection }
-AsTypeConstraintTests >> testArrayOneElement [
+AsTypeConstraintTest >> testArrayOneElement [
 	| type |
 	type := { String } asConstraint.
 	self assert: type isSingleType.
@@ -29,7 +29,7 @@ AsTypeConstraintTests >> testArrayOneElement [
 ]
 
 { #category : #collection }
-AsTypeConstraintTests >> testArrayTwoElement [
+AsTypeConstraintTest >> testArrayTwoElement [
 	| type |
 	type := { String. SmallInteger } asConstraint.
 	self assert: type isMultipleType.
@@ -37,7 +37,7 @@ AsTypeConstraintTests >> testArrayTwoElement [
 ]
 
 { #category : #scope }
-AsTypeConstraintTests >> testBlockClosureClass [
+AsTypeConstraintTest >> testBlockClosureClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of BlockClosure "
 	type := BlockClosure asConstraint.
@@ -46,7 +46,7 @@ AsTypeConstraintTests >> testBlockClosureClass [
 ]
 
 { #category : #basic }
-AsTypeConstraintTests >> testClass [
+AsTypeConstraintTest >> testClass [
 	| type |
 	type := String asConstraint.
 	self assert: type isSingleType.
@@ -54,7 +54,7 @@ AsTypeConstraintTests >> testClass [
 ]
 
 { #category : #scope }
-AsTypeConstraintTests >> testCollectionClass [
+AsTypeConstraintTest >> testCollectionClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Collection "
 	type := Collection asConstraint.
@@ -63,12 +63,12 @@ AsTypeConstraintTests >> testCollectionClass [
 ]
 
 { #category : #basic }
-AsTypeConstraintTests >> testNonMetaInstance [
+AsTypeConstraintTest >> testNonMetaInstance [
 	self should: [ 1 asConstraint ] raise: MessageNotUnderstood 
 ]
 
 { #category : #collection }
-AsTypeConstraintTests >> testOrderCollectionOfString [
+AsTypeConstraintTest >> testOrderCollectionOfString [
 	| type |
 	type := { String } asOrderedCollection asConstraint.
 	self assert: type isCollectionType.
@@ -77,7 +77,7 @@ AsTypeConstraintTests >> testOrderCollectionOfString [
 ]
 
 { #category : #basic }
-AsTypeConstraintTests >> testPredicate [
+AsTypeConstraintTest >> testPredicate [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
 	type := [:a | a < 2 ] asConstraint.
@@ -87,7 +87,7 @@ AsTypeConstraintTests >> testPredicate [
 ]
 
 { #category : #collection }
-AsTypeConstraintTests >> testSetOfString [
+AsTypeConstraintTest >> testSetOfString [
 	| type |
 	type := { String } asSet asConstraint.
 	self assert: type isCollectionType.
@@ -96,7 +96,7 @@ AsTypeConstraintTests >> testSetOfString [
 ]
 
 { #category : #basic }
-AsTypeConstraintTests >> testTrait [
+AsTypeConstraintTest >> testTrait [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
 	type := MockTraitForTests asConstraint.
@@ -105,7 +105,7 @@ AsTypeConstraintTests >> testTrait [
 ]
 
 { #category : #scope }
-AsTypeConstraintTests >> testTraitClass [
+AsTypeConstraintTest >> testTraitClass [
 	| type |
 	" Checks that this returns a Single type, unlike an instance of Trait "
 	type := Trait asConstraint.

@@ -4,13 +4,13 @@ This class contains structural tests for declarations of typed slots.
 
 "
 Class {
-	#name : #TypesDeclarationStructureTests,
+	#name : #TypesDeclarationStructureTest,
 	#superclass : #TestCase,
 	#category : #TypedSlotHogo
 }
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
+TypesDeclarationStructureTest >> testAnonymousInterfaceTypeOnArrayOfSelector [
 	| slot |
 	slot := #anIV understands: {#+} .
 	self assert: slot type isInterfaceConstraint.
@@ -21,7 +21,7 @@ TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnSelector [
+TypesDeclarationStructureTest >> testAnonymousInterfaceTypeOnSelector [
 	| slot |
 	slot :=#anIV understands: #+ .
 	self assert: slot type isInterfaceConstraint.
@@ -32,7 +32,7 @@ TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnSelector [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testAssociationType [
+TypesDeclarationStructureTest >> testAssociationType [
 	| slot |
 	slot :=  #anAssociationTypedIV type: (Association keyType: Character valueType: SmallInteger).
 	self assert: slot type isCompositeType.
@@ -50,7 +50,7 @@ TypesDeclarationStructureTests >> testAssociationType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testCollectionType [
+TypesDeclarationStructureTest >> testCollectionType [
 	| slot |
 	slot :=  #aCollectionTypedIV type: (Array of: Character).
 	self assert: slot type isCollectionType.
@@ -68,7 +68,7 @@ TypesDeclarationStructureTests >> testCollectionType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testCollectionTypeWithMultipleElementType [
+TypesDeclarationStructureTest >> testCollectionTypeWithMultipleElementType [
 	| slot |
 	slot :=  #aCollectionTypedIV type: (Array of: {Character. SmallInteger}).
 	self assert: slot type isCollectionType.
@@ -86,7 +86,7 @@ TypesDeclarationStructureTests >> testCollectionTypeWithMultipleElementType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testMultipleType [
+TypesDeclarationStructureTest >> testMultipleType [
 	| slot |
 	slot := #aMultipleTypeIV type: {SmallInteger. Float}.
 	self assert: slot type isMultipleType.
@@ -102,7 +102,7 @@ TypesDeclarationStructureTests >> testMultipleType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testNamedInterface [
+TypesDeclarationStructureTest >> testNamedInterface [
 	| slot |
 	slot :=#anIV understands: InterfacePlus.
 	self assert: slot type isInterfaceConstraint.
@@ -113,7 +113,7 @@ TypesDeclarationStructureTests >> testNamedInterface [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testSingleType [
+TypesDeclarationStructureTest >> testSingleType [
 	| slot |
 	slot :=#anIV type: String.
 	self assert: slot type isSingleType.
@@ -123,7 +123,7 @@ TypesDeclarationStructureTests >> testSingleType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testSingleTypeUsingAnArray [
+TypesDeclarationStructureTest >> testSingleTypeUsingAnArray [
 	| slot |
 	slot :=#anIV type: { String }.
 	self assert: slot type isSingleType.
@@ -133,7 +133,7 @@ TypesDeclarationStructureTests >> testSingleTypeUsingAnArray [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testTraitType [
+TypesDeclarationStructureTest >> testTraitType [
 	| slot |
 	slot := #testSlot mustUse: MockTraitForTests.
 	self assert: slot type isTraitConstraint.
@@ -143,7 +143,7 @@ TypesDeclarationStructureTests >> testTraitType [
 ]
 
 { #category : #basic }
-TypesDeclarationStructureTests >> testValidatorType [
+TypesDeclarationStructureTest >> testValidatorType [
 	| slot |
 	slot :=#testSlot satisfy: [ :x | x > 0 ].
 	self assert: slot type isPredicateConstraint.

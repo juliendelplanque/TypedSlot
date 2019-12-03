@@ -13,7 +13,7 @@ Class {
 TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
 	| slot |
 	slot := #anIV understands: {#+} .
-	self assert: slot type isInterfaceType.
+	self assert: slot type isInterfaceConstraint.
 	self assert: slot type interface name isNil.
 	self assert: slot type interface selectors isArray.
 	self assert: slot type equals: (AnonymousInterfaceConstraint new interface: (Interface selectors: #(#+)) ; yourself).
@@ -24,7 +24,7 @@ TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnArrayOfSelector [
 TypesDeclarationStructureTests >> testAnonymousInterfaceTypeOnSelector [
 	| slot |
 	slot :=#anIV understands: #+ .
-	self assert: slot type isInterfaceType.
+	self assert: slot type isInterfaceConstraint.
 	self assert: slot type interface name isNil.
 	self assert: slot type interface selectors isArray.
 	self assert: slot type equals: (AnonymousInterfaceConstraint new interface:(Interface selectors: #(#+)) ; yourself).
@@ -76,7 +76,7 @@ TypesDeclarationStructureTests >> testCollectionTypeWithMultipleElementType [
 	self assert: slot type elementType isMultipleType.
 
 	self assert: slot type collectionType type equals: Array.
-	self assert: slot type elementType types equals: {SingleType new type: Character; yourself. SingleType new type: SmallInteger ; yourself }.
+	self assert: slot type elementType types equals: {SingleType new type: Character; yourself. SingleType new type: SmallInteger ; yourself } asOrderedCollection.
 	
 	self assert: slot type equals:
 			(CollectionType new 
@@ -105,7 +105,7 @@ TypesDeclarationStructureTests >> testMultipleType [
 TypesDeclarationStructureTests >> testNamedInterface [
 	| slot |
 	slot :=#anIV understands: InterfacePlus.
-	self assert: slot type isInterfaceType.
+	self assert: slot type isInterfaceConstraint.
 	self assert: slot type interface selectors class = Set.
 	self assert: slot type interface name equals: #InterfacePlus.
 	self assert: slot type equals: (NamedInterfaceConstraint new interface: InterfacePlus new ; yourself).
@@ -136,7 +136,7 @@ TypesDeclarationStructureTests >> testSingleTypeUsingAnArray [
 TypesDeclarationStructureTests >> testTraitType [
 	| slot |
 	slot := #testSlot mustUse: MockTraitForTests.
-	self assert: slot type isTraitType.
+	self assert: slot type isTraitConstraint.
 	self assert: slot type trait equals: MockTraitForTests.
 	self assert: slot type equals: (TraitConstraint new trait: MockTraitForTests ; yourself).
 	self assert: slot definitionString equals: '#testSlot mustUse: MockTraitForTests'
@@ -146,7 +146,7 @@ TypesDeclarationStructureTests >> testTraitType [
 TypesDeclarationStructureTests >> testValidatorType [
 	| slot |
 	slot :=#testSlot satisfy: [ :x | x > 0 ].
-	self assert: slot type isValidator.
+	self assert: slot type isPredicateConstraint.
 	self assert: slot type predicate isBlock.
 	self assert: slot type predicate argumentCount equals: 1.
 	self assert: slot type equals: (PredicateConstraint new predicate: [ :x | x > 0 ] ; yourself).

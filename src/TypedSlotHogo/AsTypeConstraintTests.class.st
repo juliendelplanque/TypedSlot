@@ -1,3 +1,10 @@
+"
+This class contains tests for asTypeConstraint messages.
+Basic tests just create a single constraint from something.
+Collection tests tests creation of types where collections are involved, potentially recursively.
+Scope tests checks that for special classes it applies differently for instances and classes.
+
+"
 Class {
 	#name : #AsTypeConstraintTests,
 	#superclass : #TestCase,

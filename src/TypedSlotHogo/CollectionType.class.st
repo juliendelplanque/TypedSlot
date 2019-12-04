@@ -74,6 +74,11 @@ CollectionType >> hasSamePropertiesAs: anotherType [
 	^ collectionType = anotherType collectionType and:[ elementType = anotherType elementType ]
 ]
 
+{ #category : #accessing }
+CollectionType >> hash [
+	^ collectionType hash + elementType hash
+]
+
 { #category : #testing }
 CollectionType >> isCollectionType [
 	^ true

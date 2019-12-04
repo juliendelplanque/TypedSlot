@@ -22,6 +22,11 @@ MultipleType class >> initialSelector [
 ]
 
 { #category : #debug }
+MultipleType >> addType: aType [
+	types add: aType asTypeReification
+]
+
+{ #category : #debug }
 MultipleType >> allTypes [
 	^ (types flatCollect: [:aType| aType allTypes ]) asSet
 ]
@@ -36,7 +41,7 @@ MultipleType >> definitionStringOn: aStream [
 	aStream nextPut: ${.
 	types do: [:aType|
 		aType definitionStringOn: aStream.
-		"aStream print: aType" ]
+		]
 	separatedBy:[ aStream nextPut: $. ].
 	aStream nextPut: $}.
 ]
@@ -44,6 +49,11 @@ MultipleType >> definitionStringOn: aStream [
 { #category : #testing }
 MultipleType >> hasSamePropertiesAs: anotherType [
 	^ types = anotherType types
+]
+
+{ #category : #printing }
+MultipleType >> hash [ 
+	^ types hash
 ]
 
 { #category : #testing }
@@ -60,6 +70,18 @@ MultipleType >> printOn: aStream [
 ]
 
 { #category : #accessing }
+MultipleType >> removeType: aType [
+	types remove: aType asTypeReification.
+	self singleTypeCheck
+]
+
+{ #category : #accessing }
+MultipleType >> singleTypeCheck [
+	types size = 0 ifTrue: [ self becomeForward: EmptyType new ].
+	types size = 1 ifTrue: [ self becomeForward: self types anyOne ]"It's already a single type, no need to recreate it"
+]
+
+{ #category : #accessing }
 MultipleType >> types [
 	^ types
 ]
@@ -67,6 +89,6 @@ MultipleType >> types [
 { #category : #accessing }
 MultipleType >> types: aCollectionOfType [
 	self assert: aCollectionOfType isCollection.
-	
-	types := aCollectionOfType asOrderedCollection
+	types := aCollectionOfType collect: #asConstraint into: Set new.
+	self singleTypeCheck.
 ]

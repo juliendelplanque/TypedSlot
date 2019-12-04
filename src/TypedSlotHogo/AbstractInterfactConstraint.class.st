@@ -32,6 +32,11 @@ AbstractInterfactConstraint >> hasSamePropertiesAs: anInterfaceType [
 ]
 
 { #category : #accessing }
+AbstractInterfactConstraint >> hash [
+	^ interface hash
+]
+
+{ #category : #accessing }
 AbstractInterfactConstraint >> interface [
 	^ interface
 ]

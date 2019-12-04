@@ -33,7 +33,7 @@ AsTypeConstraintTest >> testArrayTwoElement [
 	| type |
 	type := { String. SmallInteger } asConstraint.
 	self assert: type isMultipleType.
-	self assert: type types equals: { SingleType new type: String; yourself. SingleType new type: SmallInteger; yourself } asOrderedCollection.
+	self assert: type types equals: { SingleType new type: String; yourself. SingleType new type: SmallInteger; yourself } asSet.
 ]
 
 { #category : #scope }

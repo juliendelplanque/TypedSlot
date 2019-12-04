@@ -70,19 +70,19 @@ TypesDeclarationStructureTest >> testCollectionType [
 { #category : #basic }
 TypesDeclarationStructureTest >> testCollectionTypeWithMultipleElementType [
 	| slot |
-	slot :=  #aCollectionTypedIV type: (Array of: {Character. SmallInteger}).
+	slot :=  #aCollectionTypedIV type: (Array of: {SmallInteger.Character}).
 	self assert: slot type isCollectionType.
 	self assert: slot type collectionType isSingleType.
 	self assert: slot type elementType isMultipleType.
 
 	self assert: slot type collectionType type equals: Array.
-	self assert: slot type elementType types equals: {SingleType new type: Character; yourself. SingleType new type: SmallInteger ; yourself } asOrderedCollection.
+	self assert: slot type elementType types equals: {SingleType new type: Character; yourself. SingleType new type: SmallInteger ; yourself } asSet.
 	
 	self assert: slot type equals:
 			(CollectionType new 
 				collectionType: (SingleType new type: Array; yourself);
 				elementType: (MultipleType new types: {SingleType new type: Character; yourself. SingleType new type: SmallInteger ; yourself} ; yourself)).
-	self assert: slot definitionString equals: '#aCollectionTypedIV type: (Array of: {Character.SmallInteger})'
+	self assert: slot definitionString equals: '#aCollectionTypedIV type: (Array of: {SmallInteger.Character})'
 ]
 
 { #category : #basic }

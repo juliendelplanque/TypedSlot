@@ -9,3 +9,8 @@ AbstractTypeConstraint >> allTypes [
 	" It should return all types used. Only for debug purpose"
 	^ self subclassResponsibility 
 ]
+
+{ #category : #converting }
+AbstractTypeConstraint >> asTypeReification [
+	^ self
+]

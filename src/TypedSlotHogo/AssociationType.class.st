@@ -56,6 +56,11 @@ AssociationType >> hasSamePropertiesAs: anotherType [
 ]
 
 { #category : #accessing }
+AssociationType >> hash [
+	^ keyType hash + valueType hash 
+]
+
+{ #category : #accessing }
 AssociationType >> keyType [
 	^ keyType
 ]

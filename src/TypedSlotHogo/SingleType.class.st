@@ -21,6 +21,12 @@ SingleType class >> initialSelector [
 	^ #type:
 ]
 
+{ #category : #accessing }
+SingleType >> addType: aType [
+	type = aType ifTrue:[ ^ self ].
+	self becomeForward: ( { type. aType } asConstraint )
+]
+
 { #category : #debug }
 SingleType >> allTypes [
 	^ { type } asSet
@@ -40,6 +46,11 @@ SingleType >> definitionStringOn: aStream [
 { #category : #comparing }
 SingleType >> hasSamePropertiesAs: anotherType [
 	^ type = anotherType type
+]
+
+{ #category : #comparing }
+SingleType >> hash [
+	^ type hash
 ]
 
 { #category : #testing }

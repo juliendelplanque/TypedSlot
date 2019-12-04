@@ -29,7 +29,7 @@ AbstractConstraint class >> initialSelector [
 
 { #category : #testing }
 AbstractConstraint >> = anotherType [
-	^ 	self == anotherType or:[ self class = anotherType class and: [ self hasSamePropertiesAs: anotherType ]]
+	^ self == anotherType or: [ self class = anotherType class and: [ self hasSamePropertiesAs: anotherType ]]
 ]
 
 { #category : #creation }
@@ -55,6 +55,12 @@ AbstractConstraint >> hasSamePropertiesAs: aType [
 	"called by self >> #equal. Needs to implement this on the assumption that aType is the same class"
 	" returns a boolean"
 	^ self subclassResponsibility 
+]
+
+{ #category : #testing }
+AbstractConstraint >> hash [
+	" blocks Object >> #hash, necessary since we overload #="
+ 	^ self subclassResponsibility
 ]
 
 { #category : #testing }

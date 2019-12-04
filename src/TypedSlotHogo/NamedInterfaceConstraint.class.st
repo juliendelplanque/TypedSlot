@@ -8,10 +8,6 @@ I am declared using a reference to an existing interface for a slot.
 Class {
 	#name : #NamedInterfaceConstraint,
 	#superclass : #AbstractInterfactConstraint,
-	#instVars : [
-		'interfaceSource',
-		'interfaceSelector'
-	],
 	#category : #TypedSlotHogo
 }
 

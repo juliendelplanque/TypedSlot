@@ -32,12 +32,12 @@ SingleType >> allTypes [
 	^ { type } asSet
 ]
 
-{ #category : #typing }
+{ #category : #testing }
 SingleType >> checkConstraint: anObject [
 	((anObject isKindOf: type) or: [ anObject isNil ]) ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 SingleType >> definitionStringOn: aStream [
 	aStream 
 		print: type
@@ -58,7 +58,7 @@ SingleType >> isSingleType [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 SingleType >> printOn: aStream [
 	aStream print: self class;
 		<< '(';

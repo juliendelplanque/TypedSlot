@@ -9,7 +9,7 @@ EmptyType >> allTypes [
 	^ Set new
 ]
 
-{ #category : #debug }
+{ #category : #testing }
 EmptyType >> isEmptyType [
 	^ true
 ]

@@ -31,12 +31,12 @@ MultipleType >> allTypes [
 	^ (types flatCollect: [:aType| aType allTypes ]) asSet
 ]
 
-{ #category : #typing }
+{ #category : #testing }
 MultipleType >> checkConstraint: anObject [
 	((types anySatisfy: [:aType| anObject isKindOf: aType]) or: [ anObject isNil ]) ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
-{ #category : #accessing }
+{ #category : #printing }
 MultipleType >> definitionStringOn: aStream [
 	aStream nextPut: ${.
 	types do: [:aType|
@@ -46,12 +46,12 @@ MultipleType >> definitionStringOn: aStream [
 	aStream nextPut: $}.
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 MultipleType >> hasSamePropertiesAs: anotherType [
 	^ types = anotherType types
 ]
 
-{ #category : #printing }
+{ #category : #comparing }
 MultipleType >> hash [ 
 	^ types hash
 ]
@@ -77,7 +77,7 @@ MultipleType >> removeType: aType [
 
 { #category : #accessing }
 MultipleType >> singleTypeCheck [
-	types size = 0 ifTrue: [ self becomeForward: EmptyType new ].
+	types ifEmpty: [ self becomeForward: EmptyType new ].
 	types size = 1 ifTrue: [ self becomeForward: self types anyOne ]"It's already a single type, no need to recreate it"
 ]
 

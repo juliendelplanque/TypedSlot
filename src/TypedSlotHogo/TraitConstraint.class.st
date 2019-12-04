@@ -34,7 +34,7 @@ TraitConstraint >> definitionStringOn: aStream [
 	aStream print: trait 
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 TraitConstraint >> hasSamePropertiesAs: aType [
 	 ^ trait = aType trait
 ]
@@ -44,12 +44,12 @@ TraitConstraint >> isTraitConstraint [
 	^ true
 ]
 
-{ #category : #testing }
+{ #category : #accessing }
 TraitConstraint >> trait [
 	^ trait
 ]
 
-{ #category : #testing }
+{ #category : #accessing }
 TraitConstraint >> trait: aType [
 	trait := aType
 ]

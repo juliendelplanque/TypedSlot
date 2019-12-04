@@ -30,12 +30,12 @@ AssociationType >> allTypes [
 	^ ( keyType allTypes + valueType allTypes ) asSet
 ]
 
-{ #category : #typing }
+{ #category : #testing }
 AssociationType >> checkConstraint: anObject [
 	(anObject isNil 
 		or: [ (anObject isKindOf: Association ) 
-		and: [ (anObject key isKindOf: keyType) 
-		and: [ anObject value isKindOf: valueType ]]])
+		and: [ (anObject key = keyType) 
+		and: [ anObject value = valueType ]]])
 		ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
@@ -55,7 +55,7 @@ AssociationType >> hasSamePropertiesAs: anotherType [
 	^ keyType = anotherType keyType and: [ valueType = anotherType valueType ]
 ]
 
-{ #category : #accessing }
+{ #category : #comparing }
 AssociationType >> hash [
 	^ keyType hash + valueType hash 
 ]

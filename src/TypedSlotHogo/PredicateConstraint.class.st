@@ -20,7 +20,7 @@ Class {
 	#category : #TypedSlotHogo
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 PredicateConstraint class >> initialSelector [
 	^ #satisfy:
 ]
@@ -35,23 +35,23 @@ PredicateConstraint >> definitionStringOn: aStream [
 	aStream print: predicate
 ]
 
-{ #category : #printing }
+{ #category : #comparing }
 PredicateConstraint >> hasSamePropertiesAs: aType [
 	"we compare ASTs since blocks have other instance variables that may not be the same"
 	^ predicate sourceNode = aType predicate sourceNode
 ]
 
-{ #category : #printing }
+{ #category : #testing }
 PredicateConstraint >> isPredicateConstraint [
 	^ true
 ]
 
-{ #category : #printing }
+{ #category : #accessing }
 PredicateConstraint >> predicate [
 	^ predicate
 ]
 
-{ #category : #printing }
+{ #category : #accessing }
 PredicateConstraint >> predicate: aBlock [ 
 	predicate := aBlock
 ]

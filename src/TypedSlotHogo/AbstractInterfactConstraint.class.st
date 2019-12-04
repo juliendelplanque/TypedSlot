@@ -15,23 +15,23 @@ Class {
 	#category : #TypedSlotHogo
 }
 
-{ #category : #accessing }
+{ #category : #printing }
 AbstractInterfactConstraint class >> initialSelector [
 	^ #understands: 
 ]
 
-{ #category : #checking }
+{ #category : #testing }
 AbstractInterfactConstraint >> checkConstraint: anObject [
 	(anObject class selectors includesAll: interface selectors)
 		ifFalse: [ self wasViolatedBy: anObject ]
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 AbstractInterfactConstraint >> hasSamePropertiesAs: anInterfaceType [
 	^ interface = anInterfaceType interface
 ]
 
-{ #category : #accessing }
+{ #category : #comparing }
 AbstractInterfactConstraint >> hash [
 	^ interface hash
 ]

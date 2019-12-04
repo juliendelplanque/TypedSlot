@@ -106,7 +106,7 @@ TypesDeclarationStructureTest >> testNamedInterface [
 	| slot |
 	slot :=#anIV understands: InterfacePlus.
 	self assert: slot type isInterfaceConstraint.
-	self assert: slot type interface selectors class = Set.
+	self assert: slot type interface selectors class equals: Set.
 	self assert: slot type interface name equals: #InterfacePlus.
 	self assert: slot type equals: (NamedInterfaceConstraint new interface: InterfacePlus new ; yourself).
 	self assert: slot definitionString equals: '#anIV understands: InterfacePlus'

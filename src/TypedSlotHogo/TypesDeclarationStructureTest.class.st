@@ -88,7 +88,7 @@ TypesDeclarationStructureTest >> testCollectionTypeWithMultipleElementType [
 { #category : #basic }
 TypesDeclarationStructureTest >> testMultipleType [
 	| slot |
-	slot := #aMultipleTypeIV type: {SmallInteger. Float}.
+	slot := #aMultipleTypeIV type: {Float.SmallInteger}.
 	self assert: slot type isMultipleType.
 	self assert: slot type types isNotEmpty.
 	slot type types do: [ :aType |
@@ -98,7 +98,7 @@ TypesDeclarationStructureTest >> testMultipleType [
 			(MultipleType new types:
 				{(SingleType new type: SmallInteger ; yourself).
 				(SingleType new type: Float ; yourself)}).
-	self assert: slot definitionString equals: '#aMultipleTypeIV type: {SmallInteger.Float}'
+	self assert: slot definitionString equals: '#aMultipleTypeIV type: {Float.SmallInteger}'
 ]
 
 { #category : #basic }

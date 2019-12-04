@@ -44,6 +44,13 @@ TypeImplicitTransformationTest >> testMultipleTypeRemoveTypeButStillMultiple [
 ]
 
 { #category : #tests }
+TypeImplicitTransformationTest >> testMultipleTypeWithNoTypes [
+	| type |
+	type := MultipleType new types: {} ; yourself.
+	self assert: type isEmptyType.
+]
+
+{ #category : #tests }
 TypeImplicitTransformationTest >> testMultipleTypeWithOneType [
 	| type |
 	type := MultipleType new types: { String }; yourself.

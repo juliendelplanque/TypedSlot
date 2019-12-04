@@ -77,8 +77,8 @@ MultipleType >> removeType: aType [
 
 { #category : #accessing }
 MultipleType >> singleTypeCheck [
-	types ifEmpty: [ self becomeForward: EmptyType new ].
-	types size = 1 ifTrue: [ self becomeForward: self types anyOne ]"It's already a single type, no need to recreate it"
+	types ifEmpty: [ ^ self becomeForward: EmptyType new ].
+	types size = 1 ifTrue: [ ^ self becomeForward: self types anyOne ]"It's already a single type, no need to recreate it"
 ]
 
 { #category : #accessing }
@@ -90,5 +90,5 @@ MultipleType >> types [
 MultipleType >> types: aCollectionOfType [
 	self assert: aCollectionOfType isCollection.
 	types := aCollectionOfType collect: #asConstraint into: Set new.
-	self singleTypeCheck.
+	self singleTypeCheck
 ]

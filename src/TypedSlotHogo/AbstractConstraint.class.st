@@ -133,6 +133,11 @@ AbstractConstraint >> isTraitConstraint [
 	^ false
 ]
 
+{ #category : #testing }
+AbstractConstraint >> isTypeConstraint [
+	^ false
+]
+
 { #category : #error }
 AbstractConstraint >> wasViolatedBy: anObject [
 	(ConstraintViolation expectedType: self objectAttemptedToBeWritten: anObject) signal

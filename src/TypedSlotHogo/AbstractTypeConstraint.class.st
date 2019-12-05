@@ -14,3 +14,8 @@ AbstractTypeConstraint >> allTypes [
 AbstractTypeConstraint >> asTypeReification [
 	^ self
 ]
+
+{ #category : #testing }
+AbstractTypeConstraint >> isTypeConstraint [
+	^ true
+]

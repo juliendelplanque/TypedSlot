@@ -55,7 +55,7 @@ TypedSlot >> checkTypeOfCurrentValueFor: anObject [
 	| currentValue |
 	currentValue := self read: anObject.
 	currentValue ifNil: [ ^ self ].
-	self type checkObjectType: currentValue
+	self type checkConstraint: currentValue
 ]
 
 { #category : #checking }
@@ -63,8 +63,8 @@ TypedSlot >> checkTypeOfValue: newValue for: anObject [
 	(self isEnabledFor: anObject)
 		ifFalse: [ ^ self ].
 	newValue ifNil: [ ^ self ].
-	
-	type checkObjectType: newValue
+
+	type checkConstraint: newValue
 ]
 
 { #category : #refactoring }
@@ -82,12 +82,14 @@ TypedSlot >> definitionString [
 
 { #category : #printing }
 TypedSlot >> definitionStringOn: aStream [
-	aStream store: self name.
+	aStream print: self name;
+		space;
+		nextPutAll: 
+		"#type:" 
+		type class initialSelector;
+		space.
 	
-	(self type isNotNil and: [ self type hasFullControlOnDefinitionString ])
-		ifFalse: [ aStream nextPutAll: ' type: ' ].
-	
-	self type printOn: aStream
+	self type definitionStringOn: aStream
 ]
 
 { #category : #'code generation' }

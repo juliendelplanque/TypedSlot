@@ -1,9 +1,13 @@
 "
-An interface:
-- declares only method selectors
-- cannot be instantiated.
-- can be used to type a TypedSlot
-- can extend several other interfaces.
+I represent an Interface of selectors, as a Java interface.
+I can either be used anonymously by instanciating myself,
+or subclassed to be given a name.
+
+For named interfaces, as a first version, I fill my own #selectors variable on instance creation in the #initialize method. See InterfacePlus for an example.
+
+	my #selectors instance variable contains the selectors (using symbols) that I represent
+	my #extendedInterfaces variables contains a reference to other interfaces I am extending (in the java sense). I can only extend interfaces with whom I have no selector in common. (an exemple of this would be nice)
+	
 "
 Class {
 	#name : #Interface,
@@ -14,6 +18,11 @@ Class {
 	],
 	#category : #'TypedSlot-Interface'
 }
+
+{ #category : #converting }
+Interface class >> asInterfaceConstraint [
+	^ NamedInterfaceConstraint new interface: self new ; yourself
+]
 
 { #category : #accessing }
 Interface class >> selectors: aCollectionOfSymbols [
@@ -31,17 +40,12 @@ Interface >> = anObject [
 	self class = anObject class
 		ifFalse: [ ^ false ].
 	^ selectors = anObject selectors
+		and: [ extendedInterfaces = anObject extendedInterfaces ]
 ]
 
 { #category : #adding }
 Interface >> addSelector: aSymbol [
 	selectors add: aSymbol
-]
-
-{ #category : #checking }
-Interface >> checkObjectType: anObject [
-	(anObject class selectors includesAll: self selectors)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
 
 { #category : #accessing }
@@ -59,16 +63,11 @@ Interface >> extendedInterfaces: aCollectionOfInterfaces [
 	extendedInterfaces := aCollectionOfInterfaces
 ]
 
-{ #category : #testing }
-Interface >> hasFullControlOnDefinitionString [
-	^ true
-]
-
 { #category : #comparing }
 Interface >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
-	^ selectors hash
+	^ selectors hash bitXor: extendedInterfaces hash
 ]
 
 { #category : #initialization }
@@ -76,6 +75,11 @@ Interface >> initialize [
 	super initialize.
 	self selectors: Set new.
 	self extendedInterfaces: #()
+]
+
+{ #category : #accessing }
+Interface >> name [
+	^ self class = Interface ifTrue: nil ifFalse: [ self class name ]
 ]
 
 { #category : #printing }
@@ -90,11 +94,10 @@ Interface >> selectors [
 
 { #category : #accessing }
 Interface >> selectors: anObject [
-	selectors := anObject asOrderedCollection
+	selectors := anObject
 ]
 
 { #category : #printing }
 Interface >> storeOn: aStream [
-	aStream nextPutAll: ' interface: '.
 	self selectors asArray storeOn: aStream
 ]

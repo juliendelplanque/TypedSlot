@@ -1,12 +1,7 @@
 Extension { #name : #ClassDescription }
 
 { #category : #'*TypedSlot-Class' }
-ClassDescription >> checkObjectType: anObject [
+ClassDescription >> checkConstraint: anObject [
 	(anObject isKindOf: self)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
-]
-
-{ #category : #'*TypedSlot-Class' }
-ClassDescription >> hasFullControlOnDefinitionString [
-	^ false
+		ifFalse: [ (ConstraintViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]

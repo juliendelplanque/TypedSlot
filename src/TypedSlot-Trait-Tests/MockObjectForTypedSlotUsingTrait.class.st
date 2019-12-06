@@ -5,7 +5,7 @@ Class {
 	#name : #MockObjectForTypedSlotUsingTrait,
 	#superclass : #Object,
 	#instVars : [
-		'#testSlot type: MockTraitForTests'
+		'#testSlot mustUse: MockTraitForTests'
 	],
 	#category : #'TypedSlot-Trait-Tests'
 }

@@ -2,8 +2,8 @@ Class {
 	#name : #MockObjectForTypedSlotUsingInterface,
 	#superclass : #Object,
 	#instVars : [
-		'#testSlot1 type: (RemoteInterface source: FooableObject)',
-		'#testSlot2 type: (Interface selectors: #(#foo ))'
+		'#namedInterfaceSlot understands: InterfacePlus',
+		'#anonymousInterfaceSlot understands: #(#foo)'
 	],
 	#category : #'TypedSlot-Interface-Tests'
 }
@@ -11,4 +11,5 @@ Class {
 { #category : #testing }
 MockObjectForTypedSlotUsingInterface class >> isTypeCheckingEnabled [
 	^ true
+
 ]

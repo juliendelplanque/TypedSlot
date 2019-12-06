@@ -6,9 +6,7 @@ Class {
 
 { #category : #accessing }
 FooableObject class >> interface [
-	^ Interface new
-		addSelector: #foo;
-		yourself
+	^ AnonymousInterfaceConstraint selectors: {#foo}
 ]
 
 { #category : #accessing }

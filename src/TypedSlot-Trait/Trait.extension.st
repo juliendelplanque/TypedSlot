@@ -1,7 +1,14 @@
 Extension { #name : #Trait }
 
 { #category : #'*TypedSlot-Trait' }
-Trait >> checkObjectType: anObject [
+Trait >> asConstraint [
+	^ TraitConstraint new
+		trait: self ;
+		yourself.
+]
+
+{ #category : #'*TypedSlot-Trait' }
+Trait >> checkConstraint: anObject [
 	(self users includesAny: anObject class withAllSuperclasses)
-		ifFalse: [ (TypeViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
+		ifFalse: [ (ConstraintViolation expectedType: self objectAttemptedToBeWritten: anObject) signal ]
 ]
